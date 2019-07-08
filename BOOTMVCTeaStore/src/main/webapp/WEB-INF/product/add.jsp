@@ -46,7 +46,7 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="/">Home</a> <a class="nav-link"
 						href="/browse">Browse Inventory</a> <a class="nav-link active"
-						href="/crud">Add Product</a><a class="nav-link" href="/update">Update/Remove
+						href="/add">Add Product</a><a class="nav-link" href="/update">Update/Remove
 						Product</a>
 				</nav>
 			</div>

@@ -1,6 +1,6 @@
 ## Spring Boot MVC Entity Project
 
-### Week 9 Homework Team Project for Skill Distillery
+### Week 9 Homework for Skill Distillery
 Spring MVC Film CRUD
 
 ### Overview
@@ -14,5 +14,6 @@ HTML, Bootstrap Framework/CSS,
 Spring MVC Pattern, DAO Pattern, Singleton Selector Pattern
 
 ### Lessons Learned
+Syncing a Spring BOOT project with Java JPA EM/EMF.
 Learned the key aspects of the Spring MVC Pattern.
 CRUD operation considerations for referential integrity.

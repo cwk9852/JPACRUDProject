@@ -55,7 +55,7 @@
 		<form action="updateProduct.do" modelAttribute="product" method="POST">
 			<table>
 				<tr>
-					<td><strong>Update By Product ID :</strong></td>
+					<td><strong>Update By1 ID :</strong></td>
 					<td><input type="text" name="name" size="30"
 						placeholder="#"/></td>
 				</tr>

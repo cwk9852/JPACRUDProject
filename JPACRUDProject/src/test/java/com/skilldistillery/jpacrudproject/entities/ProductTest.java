@@ -38,7 +38,6 @@ class ProductTest {
 
 	@Test
 	void test_Product_mappings() {
-
 		Product product = em.find(Product.class, 1);
 		assertEquals("Classic Chai", product.getName());
 		assertEquals(9.99, product.getPrice());
