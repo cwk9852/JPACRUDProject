@@ -62,7 +62,7 @@
 		<p class="lead">${products.get(0).name}</p>
 		<p class="lead">${products.get(0).description}</p>
 		<p class="lead">
-			<a href="getProduct.do?id=1" class="btn btn-lg btn-secondary">Learn
+			<a href="getProduct.do?id=${products.get(0).id}" class="btn btn-lg btn-secondary">Learn
 				more</a>
 		</p>
 		</main>
