@@ -1,6 +1,6 @@
 package com.skilldistillery.jpacrudproject.entities;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +19,6 @@ class ProductTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("TeaStore");
-
 	}
 
 	@AfterAll
@@ -29,15 +28,20 @@ class ProductTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		em = emf.createEntityManager();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
+		em.close();
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	void test_Product_mappings() {
 
+		Product product = em.find(Product.class, 1);
+		assertEquals("Classic Chai", product.getName());
+		assertEquals(9.99, product.getPrice());
+		assertEquals(15, product.getQty());
+	}
 }

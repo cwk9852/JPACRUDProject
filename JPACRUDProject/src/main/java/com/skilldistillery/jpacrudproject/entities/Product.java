@@ -6,30 +6,26 @@ import javax.persistence.Id;
 
 @Entity
 public class Product {
-	
+
 	@Id
 	private int id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private double price;
-	
+
 	private int qty;
-	
-	@Column(name="img")
+
+	@Column(name = "img")
 	private String imgURL;
-	
-	
+
 	public Product() {
 
 	}
 
-
-	public Product(int id, String name, String description, double price, int qty, String imgURL) {
-		super();
-		this.id = id;
+	public Product(String name, String description, double price, int qty, String imgURL) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -37,71 +33,56 @@ public class Product {
 		this.imgURL = imgURL;
 	}
 
-
-	public Product(int id, String name, String description, double price, int qty) {
-		super();
-		this.id = id;
+	public Product(String name, String description, double price, int qty) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.qty = qty;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 	public double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 
 	public int getQty() {
 		return qty;
 	}
 
-
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
-
 
 	public String getImgURL() {
 		return imgURL;
 	}
 
-
 	public void setImgURL(String imgURL) {
 		this.imgURL = imgURL;
 	}
 
-
 	public int getId() {
 		return id;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -117,7 +98,6 @@ public class Product {
 		result = prime * result + qty;
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -151,7 +131,5 @@ public class Product {
 			return false;
 		return true;
 	}
-	
-	
 
 }
