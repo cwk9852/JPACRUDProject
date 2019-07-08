@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -45,15 +45,16 @@
 				<h3 class="masthead-brand">CRUDDY TEA</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="/">Home</a> <a class="nav-link"
-						href="/browse">Browse Inventory</a> <a class="nav-link"
-						href="/add">Add Product</a> <a class="nav-link" href="/update">Update/Remove
-						Product</a>
+						href="/browse">Inventory</a> <a class="nav-link"
+						href="/add">Add Tea</a> <a class="nav-link" href="/update">Update Tea</a>
 				</nav>
 			</div>
 		</header>
 
 		<main role="main" class="inner cover">
-		<h1 class="cover-heading"><em>TEA SPOTLIGHT</em></h1>
+		<h3 class="cover-heading">
+			<em>TEA SPOTLIGHT</em>
+		</h3>
 		<p class="lead">
 			<img alt="${products.get(0).img}" src="${products.get(0).img}"
 				height="250" width="250">
@@ -61,11 +62,10 @@
 		<p class="lead">${products.get(0).name}</p>
 		<p class="lead">${products.get(0).description}</p>
 		<p class="lead">
-			<a href="getProduct.do?pid=1" class="btn btn-lg btn-secondary">Learn
+			<a href="getProduct.do?id=1" class="btn btn-lg btn-secondary">Learn
 				more</a>
 		</p>
 		</main>
-
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
@@ -75,7 +75,7 @@
 			</div>
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="pid" placeholder="Search by Tea ID" /> <input
+					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
 						type="submit" value="Find Tea" />
 				</form>
 			</div>

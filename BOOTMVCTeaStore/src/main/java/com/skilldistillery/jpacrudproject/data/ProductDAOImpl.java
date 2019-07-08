@@ -19,26 +19,33 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product findById(int id) {
+		
 		return em.find(Product.class, id);
+		
 	}
 
 	@Override
 	public List<Product> findAll() {
+		
 		String query = "SELECT p FROM Product p";
 		List<Product> products = em.createQuery(query, Product.class).getResultList();
 		return products;
+		
 	}
 
 	@Override
-	public Product update(int id, Product product) {
-
-		Product updated = em.find(Product.class, id);
+	public Product update(Product product) {
+		System.out.println(product.getId());
+		System.out.println(product.getName());
+		Product updated = em.find(Product.class, product.getId());
 		updated.setName(product.getName());
 		updated.setDescription(product.getDescription());
 		updated.setPrice(product.getPrice());
 		updated.setQty(product.getQty());
 		updated.setImg(product.getImg());
-		em.getTransaction().commit();
+		em.persist(updated);
+		System.out.println(updated);
+		em.flush();
 
 		return updated;
 	}
@@ -47,7 +54,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public boolean delete(int id) {
 
 		Product product = em.find(Product.class, id);
-
 		em.remove(product);
 
 		return true;

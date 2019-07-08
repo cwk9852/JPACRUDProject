@@ -43,4 +43,13 @@ class ProductTest {
 		assertEquals(9.99, product.getPrice());
 		assertEquals(15, product.getQty());
 	}
+	
+	@Test
+	void test_Update_product() {
+		Product product = em.find(Product.class, 1);
+		assertEquals("Classic Chai", product.getName());
+		assertEquals(9.99, product.getPrice());
+		assertEquals(15, product.getQty());
+	}
+	
 }

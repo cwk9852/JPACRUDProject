@@ -45,9 +45,8 @@
 				<h3 class="masthead-brand">CRUDDY TEA</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="/">Home</a> <a class="nav-link"
-						href="/browse">Browse Inventory</a> <a class="nav-link active"
-						href="/add">Add Product</a><a class="nav-link" href="/update">Update/Remove
-						Product</a>
+						href="/browse">Inventory</a> <a class="nav-link active"
+						href="/add">Add Tea</a><a class="nav-link" href="/update">Update Tea</a>
 				</nav>
 			</div>
 		</header>
@@ -93,7 +92,7 @@
 			</div>
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="pid" placeholder="Search by Tea ID" /> <input
+					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
 						type="submit" value="Find Tea" />
 				</form>
 			</div>

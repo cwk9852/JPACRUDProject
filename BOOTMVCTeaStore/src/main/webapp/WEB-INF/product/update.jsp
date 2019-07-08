@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Update/Remove Cruddy Tea</title>
+<title>Update/Remove ${product.id}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -45,9 +45,9 @@
 				<h3 class="masthead-brand">CRUDDY TEA</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="/">Home</a> <a class="nav-link"
-						href="/browse">Browse Inventory</a> <a class="nav-link"
-						href="/add">Add Product</a> <a class="nav-link active"
-						href="/update">Update/Remove Product</a>
+						href="/browse">Inventory</a> <a class="nav-link"
+						href="/add">Add Tea</a> <a class="nav-link active"
+						href="/update">Update Tea</a>
 				</nav>
 			</div>
 		</header>
@@ -55,44 +55,39 @@
 		<form action="updateProduct.do" modelAttribute="product" method="POST">
 			<table>
 				<tr>
-					<td><strong>Update By1 ID :</strong></td>
-					<td><input type="text" name="name" size="30"
-						placeholder="#"/></td>
+					<td><strong>Update By ID :</strong></td>
+					<td><input type="text" name="id" size="30"
+						placeholder="#" value="${product.id}"/></td>
 				</tr>
 				<tr>
 					<td><strong>Name :</strong></td>
 					<td><input type="text" name="name" size="30"
-						placeholder="Chocolate Chai Mocha Mate" /></td>
+						placeholder="Chocolate Chai Mocha Mate" value="${product.name}"/></td>
 				</tr>
 				<tr>
 
 					<td><strong>Description :</strong></td>
 					<td><input type="text" name="description" size="30"
-						placeholder="Some very wordy thing you just made up." /></td>
+						placeholder="Some very wordy thing you just made up."value="${product.description}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Price :</strong></td>
 					<td><input type="text" name="price" size="30"
-						placeholder="9.99" /></td>
+						placeholder="9.99" value="${product.price}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Quantity :</strong></td>
-					<td><input type="text" name="qty" size="30" placeholder="1-25" /></td>
+					<td><input type="text" name="qty" size="30" placeholder="1-25" value="${product.qty}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Image URL :</strong></td>
 					<td><input type="text" name="img" size="30"
-						placeholder="http://../" /></td>
+						placeholder="http://../" value="${product.img}" /></td>
 				</tr>
 			</table>
 			<input type="submit" value="Update Product" />
 		</form>
 		<br>
-		<td><strong>Delete By Product Id :</strong></td>
-		<td><form action="deleteProduct.do" method="POST">
-			<input type="text" value="" name="id" /> <input type="submit"
-				value="Delete" />
-		</form></td>
 		</main>
 
 		<footer class="mastfoot mt-auto">
@@ -104,7 +99,7 @@
 			</div>
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="pid" placeholder="Search by Tea ID" /> <input
+					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
 						type="submit" value="Find Tea" />
 				</form>
 			</div>

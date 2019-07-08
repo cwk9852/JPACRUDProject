@@ -45,9 +45,8 @@
 				<h3 class="masthead-brand">CRUDDY TEA</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="/">Home</a> <a class="nav-link"
-						href="/browse">Browse Inventory</a> <a class="nav-link"
-						href="/add">Add Product</a> <a class="nav-link" href="/update">Update/Remove
-						Product</a>
+						href="/browse">Inventory</a> <a class="nav-link" href="/add">Add
+						Tea</a> <a class="nav-link" href="/update">Update Tea</a>
 				</nav>
 				</nav>
 			</div>
@@ -59,10 +58,14 @@
 			<img alt="" src="${product.img}" height="250" width="250">
 			<p>${product.description}</p>
 			<p>Units In Stock: ${product.qty}</p>
-				<form action="updateProduct.do" method="GET">
-		<input type="hidden" value="${product.id }" name="id" /> <input
-			type="submit" value="Update Product" />
-	</form>
+			<form action="updateProduct.do" method="GET">
+				<input type="hidden" value="${product.id }" name="id" /> <input
+					type="submit" value="Update Product" />
+			</form>
+			<form action="deleteProduct.do" method="POST">
+				<input type="hidden" value="${product.id }" name="id" /> <input
+					type="submit" value="Delete" />
+			</form>
 		</div>
 		</main>
 
@@ -75,7 +78,7 @@
 			</div>
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="pid" placeholder="Search by Tea ID" /> <input
+					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
 						type="submit" value="Find Tea" />
 				</form>
 			</div>
