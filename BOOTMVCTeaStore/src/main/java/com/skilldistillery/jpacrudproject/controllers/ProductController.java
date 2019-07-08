@@ -49,6 +49,7 @@ public class ProductController {
 
 	@RequestMapping(path = "updateProduct.do", params = "id", method = RequestMethod.GET)
 	public String update(@RequestParam("id") Integer id, Model model) {
+		System.err.println("********* update 1");
 		Product product = dao.findById(id);
 		model.addAttribute("product", product);
 		return "WEB-INF/product/update.jsp";
@@ -56,12 +57,14 @@ public class ProductController {
 
 	@RequestMapping(path = "updateProduct.do", method = RequestMethod.GET)
 	public String update(Model model, Product product) {
+		System.err.println("********* update 2");
 		model.addAttribute("product", product);
 		return "WEB-INF/product/update.jsp";
 	}
 
 	@RequestMapping(path = "updateProduct.do", method = RequestMethod.POST)
 	public ModelAndView updateProduct(Product product) {
+		System.err.println("********* update 3");
 		ModelAndView model = new ModelAndView();
 		Product updated = dao.update(product);
 		model.addObject("product", updated);

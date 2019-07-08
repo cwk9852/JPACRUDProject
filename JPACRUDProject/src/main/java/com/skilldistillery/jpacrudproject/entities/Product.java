@@ -83,6 +83,8 @@ public class Product {
 	}
 
 	public void setId(int id) {
+		System.err.println("************");
+		System.err.println(id);
 		this.id = id;
 	}
 

@@ -36,6 +36,8 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public Product update(Product product) {
 		Product updated = em.find(Product.class, product.getId());
+		System.err.println("**********" + product.getId());
+		System.err.println(updated);
 		updated.setName(product.getName());
 		updated.setDescription(product.getDescription());
 		updated.setPrice(product.getPrice());

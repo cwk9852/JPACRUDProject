@@ -55,20 +55,22 @@
 		<form action="updateProduct.do" modelAttribute="product" method="POST">
 			<table>
 				<tr>
-					<td><strong>Update By ID :</strong></td>
-					<td><input type="text" name="id" size="30"
-						placeholder="#" value="${product.id}"/></td>
+					<!-- 					<td><strong>Update By ID :</strong></td>
+ -->
+					<td><input type="hidden" name="id" size="30" placeholder="#"
+						value="${product.id }" /></td>
 				</tr>
 				<tr>
 					<td><strong>Name :</strong></td>
 					<td><input type="text" name="name" size="30"
-						placeholder="Chocolate Chai Mocha Mate" value="${product.name}"/></td>
+						placeholder="Chocolate Chai Mocha Mate" value="${product.name}" /></td>
 				</tr>
 				<tr>
 
 					<td><strong>Description :</strong></td>
 					<td><input type="text" name="description" size="30"
-						placeholder="Some very wordy thing you just made up."value="${product.description}" /></td>
+						placeholder="Some very wordy thing you just made up."
+						value="${product.description}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Price :</strong></td>
@@ -77,7 +79,8 @@
 				</tr>
 				<tr>
 					<td><strong>Quantity :</strong></td>
-					<td><input type="text" name="qty" size="30" placeholder="1-25" value="${product.qty}" /></td>
+					<td><input type="text" name="qty" size="30" placeholder="1-25"
+						value="${product.qty}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Image URL :</strong></td>
@@ -85,7 +88,8 @@
 						placeholder="http://../" value="${product.img}" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Update Tea" class="btn btn-outline-success" />
+			<input type="submit" value="Update Tea"
+				class="btn btn-outline-success" />
 		</form>
 		<br>
 		</main>
