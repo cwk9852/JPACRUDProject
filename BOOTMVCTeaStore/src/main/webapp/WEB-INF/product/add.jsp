@@ -44,9 +44,9 @@
 			<div class="inner">
 				<h3 class="masthead-brand">CRUDDY TEA</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="/">Home</a> <a class="nav-link"
-						href="/browse">Inventory</a> <a class="nav-link active"
-						href="/add">Add Tea</a><!-- <a class="nav-link" href="/update">Update Tea</a> -->
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
+						href="browse.do">Inventory</a> <a class="nav-link active"
+						href="addProduct.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>

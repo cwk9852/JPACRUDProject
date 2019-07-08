@@ -35,8 +35,6 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product update(Product product) {
-		System.out.println(product.getId());
-		System.out.println(product.getName());
 		Product updated = em.find(Product.class, product.getId());
 		updated.setName(product.getName());
 		updated.setDescription(product.getDescription());
@@ -44,8 +42,6 @@ public class ProductDAOImpl implements ProductDAO {
 		updated.setQty(product.getQty());
 		updated.setImg(product.getImg());
 		em.persist(updated);
-		System.out.println(updated);
-		em.flush();
 
 		return updated;
 	}
@@ -63,7 +59,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public Product create(Product product) {
 
 		em.persist(product);
-		em.flush();
 
 		return product;
 	}

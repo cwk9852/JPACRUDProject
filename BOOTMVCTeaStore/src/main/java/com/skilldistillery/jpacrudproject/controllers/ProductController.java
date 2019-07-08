@@ -19,21 +19,21 @@ public class ProductController {
 	@Autowired
 	private ProductDAO dao;
 
-	@RequestMapping(path = "/")
+	@RequestMapping(value = { "/", "home.do" })
 	public String index(Model model) {
 		List<Product> products = dao.findAll();
 		model.addAttribute("products", products);
 		return "WEB-INF/index.jsp";
 	}
 
-	@RequestMapping(path = "/browse")
+	@RequestMapping(path = "browse.do")
 	public String browse(Model model) {
 		List<Product> products = dao.findAll();
 		model.addAttribute("products", products);
 		return "WEB-INF/product/browse.jsp";
 	}
 
-	@RequestMapping(path = "/add")
+	@RequestMapping(path = "addProduct.do")
 	public String crud(Model model) {
 		List<Product> products = dao.findAll();
 		model.addAttribute("products", products);
@@ -46,18 +46,20 @@ public class ProductController {
 		model.addAttribute("product", added);
 		return "WEB-INF/product/result.jsp";
 	}
+
 	@RequestMapping(path = "updateProduct.do", params = "id", method = RequestMethod.GET)
 	public String update(@RequestParam("id") Integer id, Model model) {
 		Product product = dao.findById(id);
 		model.addAttribute("product", product);
 		return "WEB-INF/product/update.jsp";
 	}
-	@RequestMapping(path = "/update", method = RequestMethod.GET)
+
+	@RequestMapping(path = "updateProduct.do", method = RequestMethod.GET)
 	public String update(Model model, Product product) {
 		model.addAttribute("product", product);
 		return "WEB-INF/product/update.jsp";
 	}
-	
+
 	@RequestMapping(path = "updateProduct.do", method = RequestMethod.POST)
 	public ModelAndView updateProduct(Product product) {
 		ModelAndView model = new ModelAndView();
@@ -66,7 +68,7 @@ public class ProductController {
 		model.setViewName("WEB-INF/product/result.jsp");
 		return model;
 	}
-	
+
 	@RequestMapping(path = "deleteProduct.do", params = "id", method = RequestMethod.POST)
 	public String deleteProduct(Model model, Integer id) {
 		Boolean updated = dao.delete(id);
