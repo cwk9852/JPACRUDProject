@@ -13,7 +13,7 @@ public interface ProductDAO {
 	public Product update(int id, Product product);
 
 	public boolean delete(int id);
-	
+
 	public Product create(Product product);
 
 }

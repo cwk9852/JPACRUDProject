@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>${product.name}</title>
+<title>Update/Remove Cruddy Tea</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -46,24 +46,53 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="/">Home</a> <a class="nav-link"
 						href="/browse">Browse Inventory</a> <a class="nav-link"
-						href="/add">Add Product</a> <a class="nav-link" href="/update">Update/Remove
-						Product</a>
-				</nav>
+						href="/add">Add Product</a> <a class="nav-link active"
+						href="/update">Update/Remove Product</a>
 				</nav>
 			</div>
 		</header>
 		<main role="main" class="inner cover">
-		<h2>${product.name}</h2>
-		<div>
-			<p>Price: $${product.price}</p>
-			<img alt="" src="${product.img}" height="250" width="250">
-			<p>${product.description}</p>
-			<p>Units In Stock: ${product.qty}</p>
-				<form action="updateProduct.do" method="GET">
-		<input type="hidden" value="${product.id }" name="id" /> <input
-			type="submit" value="Update Product" />
-	</form>
-		</div>
+		<form action="updateProduct.do" modelAttribute="product" method="POST">
+			<table>
+				<tr>
+					<td><strong>Update By Product ID :</strong></td>
+					<td><input type="text" name="name" size="30"
+						placeholder="#"/></td>
+				</tr>
+				<tr>
+					<td><strong>Name :</strong></td>
+					<td><input type="text" name="name" size="30"
+						placeholder="Chocolate Chai Mocha Mate" /></td>
+				</tr>
+				<tr>
+
+					<td><strong>Description :</strong></td>
+					<td><input type="text" name="description" size="30"
+						placeholder="Some very wordy thing you just made up." /></td>
+				</tr>
+				<tr>
+					<td><strong>Price :</strong></td>
+					<td><input type="text" name="price" size="30"
+						placeholder="9.99" /></td>
+				</tr>
+				<tr>
+					<td><strong>Quantity :</strong></td>
+					<td><input type="text" name="qty" size="30" placeholder="1-25" /></td>
+				</tr>
+				<tr>
+					<td><strong>Image URL :</strong></td>
+					<td><input type="text" name="img" size="30"
+						placeholder="http://../" /></td>
+				</tr>
+			</table>
+			<input type="submit" value="Update Product" />
+		</form>
+		<br>
+		<td><strong>Delete By Product Id :</strong></td>
+		<td><form action="deleteProduct.do" method="POST">
+			<input type="text" value="" name="id" /> <input type="submit"
+				value="Delete" />
+		</form></td>
 		</main>
 
 		<footer class="mastfoot mt-auto">

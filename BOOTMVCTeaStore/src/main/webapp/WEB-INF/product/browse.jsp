@@ -11,8 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>${product.name}</title>
-
+<title>Browsing Cruddy Tea</title>
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -44,27 +43,44 @@
 			<div class="inner">
 				<h3 class="masthead-brand">CRUDDY TEA</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="/">Home</a> <a class="nav-link"
+					<a class="nav-link" href="/">Home</a> <a class="nav-link active"
 						href="/browse">Browse Inventory</a> <a class="nav-link"
 						href="/add">Add Product</a> <a class="nav-link" href="/update">Update/Remove
 						Product</a>
 				</nav>
-				</nav>
 			</div>
 		</header>
-		<main role="main" class="inner cover">
-		<h2>${product.name}</h2>
-		<div>
-			<p>Price: $${product.price}</p>
-			<img alt="" src="${product.img}" height="250" width="250">
-			<p>${product.description}</p>
-			<p>Units In Stock: ${product.qty}</p>
-				<form action="updateProduct.do" method="GET">
-		<input type="hidden" value="${product.id }" name="id" /> <input
-			type="submit" value="Update Product" />
-	</form>
-		</div>
-		</main>
+		<main role="main" class="inner cover"> <c:choose>
+			<c:when test="${! empty products}">
+				<table>
+					<tr>
+						<th scope="col">Product ID</th>
+						<th scope="col">Name</th>
+						<th scope="col"></th>
+						<th scope="col">Description</th>
+						<th scope="col">Details</th>
+					</tr>
+					<c:forEach items="${products}" var="p">
+						<tr>
+							<td>${p.id}</td>
+							<td>${p.name}</td>
+							<td><img src="${p.img}" alt="${p.name}" height="100"
+								width="100"></td>
+							<td>${p.description }<br></td>
+							<td>
+								<form action=getProduct.do method="GET">
+									<input type="hidden" value="${p.id }" name="pid" /> <input
+										type="submit" value="Details" />
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<h2>Product List Not Found</h2>
+			</c:otherwise>
+		</c:choose></main>
 
 		<footer class="mastfoot mt-auto">
 			<div class="inner">

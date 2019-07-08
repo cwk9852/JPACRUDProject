@@ -1,6 +1,5 @@
 package com.skilldistillery.jpacrudproject.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -18,19 +17,18 @@ public class Product {
 
 	private int qty;
 
-	@Column(name = "img")
-	private String imgURL;
+	private String img;
 
 	public Product() {
 
 	}
 
-	public Product(String name, String description, double price, int qty, String imgURL) {
+	public Product(String name, String description, double price, int qty, String img) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.qty = qty;
-		this.imgURL = imgURL;
+		this.img = img;
 	}
 
 	public Product(String name, String description, double price, int qty) {
@@ -72,12 +70,12 @@ public class Product {
 		this.qty = qty;
 	}
 
-	public String getImgURL() {
-		return imgURL;
+	public String getImg() {
+		return img;
 	}
 
-	public void setImgURL(String imgURL) {
-		this.imgURL = imgURL;
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public int getId() {
@@ -90,7 +88,7 @@ public class Product {
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((imgURL == null) ? 0 : imgURL.hashCode());
+		result = prime * result + ((img == null) ? 0 : img.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(price);
@@ -115,10 +113,10 @@ public class Product {
 			return false;
 		if (id != other.id)
 			return false;
-		if (imgURL == null) {
-			if (other.imgURL != null)
+		if (img == null) {
+			if (other.img != null)
 				return false;
-		} else if (!imgURL.equals(other.imgURL))
+		} else if (!img.equals(other.img))
 			return false;
 		if (name == null) {
 			if (other.name != null)

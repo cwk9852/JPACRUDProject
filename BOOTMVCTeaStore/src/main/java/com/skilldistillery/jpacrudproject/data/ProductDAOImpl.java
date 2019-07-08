@@ -3,8 +3,6 @@ package com.skilldistillery.jpacrudproject.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -37,6 +35,9 @@ public class ProductDAOImpl implements ProductDAO {
 		Product updated = em.find(Product.class, id);
 		updated.setName(product.getName());
 		updated.setDescription(product.getDescription());
+		updated.setPrice(product.getPrice());
+		updated.setQty(product.getQty());
+		updated.setImg(product.getImg());
 		em.getTransaction().commit();
 
 		return updated;
@@ -46,10 +47,8 @@ public class ProductDAOImpl implements ProductDAO {
 	public boolean delete(int id) {
 
 		Product product = em.find(Product.class, id);
-		em.getTransaction().begin();
 
 		em.remove(product);
-		em.getTransaction().commit();
 
 		return true;
 	}
@@ -59,7 +58,6 @@ public class ProductDAOImpl implements ProductDAO {
 
 		em.persist(product);
 		em.flush();
-		em.getTransaction().commit();
 
 		return product;
 	}
