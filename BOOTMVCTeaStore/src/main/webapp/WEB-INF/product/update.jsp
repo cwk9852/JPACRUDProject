@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Update/Remove ${product.id}</title>
+<title>Update ${product.name}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -85,7 +85,7 @@
 						placeholder="http://../" value="${product.img}" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Update Product" />
+			<input type="submit" value="Update Tea" class="btn btn-outline-success" />
 		</form>
 		<br>
 		</main>
@@ -100,7 +100,7 @@
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" />
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>
 		</footer>

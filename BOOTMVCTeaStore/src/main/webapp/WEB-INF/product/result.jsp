@@ -46,8 +46,7 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="/">Home</a> <a class="nav-link"
 						href="/browse">Inventory</a> <a class="nav-link" href="/add">Add
-						Tea</a> <a class="nav-link" href="/update">Update Tea</a>
-				</nav>
+						Tea</a> <!-- <a class="nav-link" href="/update">Update Tea</a> -->
 				</nav>
 			</div>
 		</header>
@@ -60,11 +59,11 @@
 			<p>Units In Stock: ${product.qty}</p>
 			<form action="updateProduct.do" method="GET">
 				<input type="hidden" value="${product.id }" name="id" /> <input
-					type="submit" value="Update Product" />
+					type="submit" value="Update Product" class="btn btn-outline-success" />
 			</form>
 			<form action="deleteProduct.do" method="POST">
 				<input type="hidden" value="${product.id }" name="id" /> <input
-					type="submit" value="Delete" />
+					type="submit" value="Delete" class="btn btn-outline-danger" />
 			</form>
 		</div>
 		</main>
@@ -79,7 +78,7 @@
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" />
+						type="submit" value="Find Tea" class="btn btn-outline-success"/>
 				</form>
 			</div>
 		</footer>

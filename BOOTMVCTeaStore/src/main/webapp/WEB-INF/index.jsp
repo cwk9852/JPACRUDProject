@@ -46,8 +46,8 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="/">Home</a> <a class="nav-link"
 						href="/browse">Inventory</a> <a class="nav-link"
-						href="/add">Add Tea</a> <a class="nav-link" href="/update">Update Tea</a>
-				</nav>
+						href="/add">Add Tea</a><!--  <a class="nav-link" href="/update">Update Tea</a>
+				</nav> -->
 			</div>
 		</header>
 
@@ -76,7 +76,7 @@
 			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" />
+						type="submit" value="Find Tea" class="btn btn-outline-success"/>
 				</form>
 			</div>
 		</footer>
