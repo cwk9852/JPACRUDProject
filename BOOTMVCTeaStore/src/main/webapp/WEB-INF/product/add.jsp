@@ -42,14 +42,15 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<header class="masthead mb-auto">
 			<div class="inner">
-				<h3 class="masthead-brand">CRUDDY TEA</h3>
+				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
-						href="browse.do">Inventory</a> <a class="nav-link active"
-						href="addProduct.do">Add Tea</a>
+					<a class="nav-link" href="home.do">Home</a> <a
+						class="nav-link" href="browse.do">Inventory</a> <a
+						class="nav-link active" href="addProduct.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>
+
 		<main role="main" class="inner cover">
 		<form action="addProduct.do" modelAttribute="product" method="POST">
 			<table>
@@ -89,8 +90,6 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-			</div>
-			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success"/>

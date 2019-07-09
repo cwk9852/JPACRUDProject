@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -42,18 +42,18 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<header class="masthead mb-auto">
 			<div class="inner">
-				<h3 class="masthead-brand">CRUDDY TEA</h3>
+				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link active" href="/index.jsp">Home</a> <a class="nav-link"
-						href="browse.do">Inventory</a> <a class="nav-link"
-						href="addProduct.do">Add Tea</a><!--  <a class="nav-link" href="/update">Update Tea</a>
-				</nav> -->
+					<a class="nav-link active" href="home.do">Home</a> <a
+						class="nav-link" href="browse.do">Inventory</a> <a
+						class="nav-link" href="addProduct.do">Add Tea</a>
+				</nav>
 			</div>
 		</header>
 
 		<main role="main" class="inner cover">
 		<h3 class="cover-heading">
-			<em>TEA SPOTLIGHT</em>
+			<em>Tea Spotlight</em>
 		</h3>
 		<p class="lead">
 			<img alt="${products.get(0).img}" src="${products.get(0).img}"
@@ -62,21 +62,20 @@
 		<p class="lead">${products.get(0).name}</p>
 		<p class="lead">${products.get(0).description}</p>
 		<p class="lead">
-			<a href="getProduct.do?id=${products.get(0).id}" class="btn btn-lg btn-secondary">Learn
-				more</a>
+			<a href="getProduct.do?id=${products.get(0).id}"
+				class="btn btn-outline btn-secondary">Learn more</a>
 		</p>
 		</main>
+
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-			</div>
-			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" class="btn btn-outline-success"/>
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>
 		</footer>

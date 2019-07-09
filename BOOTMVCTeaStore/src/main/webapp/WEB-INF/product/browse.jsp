@@ -11,7 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Browsing Cruddy Tea</title>
+<title>Cruddy Tea Inventory</title>
+
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -41,15 +42,17 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<header class="masthead mb-auto">
 			<div class="inner">
-				<h3 class="masthead-brand">CRUDDY TEA</h3>
+				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a class="nav-link active"
-						href="browse.do">Inventory</a> <a class="nav-link"
-						href="addProduct.do">Add Tea</a> <!-- <a class="nav-link" href="/update">Update Tea</a> -->
+					<a class="nav-link" href="home.do">Home</a> <a
+						class="nav-link active" href="browse.do">Inventory</a> <a
+						class="nav-link" href="addProduct.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>
-		<main role="main" class="inner cover"> <c:choose>
+
+		<main role="main" class="inner cover">
+		<c:choose>
 			<c:when test="${! empty products}">
 				<table>
 					<tr>
@@ -79,16 +82,14 @@
 			<c:otherwise>
 				<h2>Product List Not Found</h2>
 			</c:otherwise>
-		</c:choose></main>
-
+		</c:choose>
+		</main>
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-			</div>
-			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success"/>

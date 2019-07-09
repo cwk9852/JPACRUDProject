@@ -42,12 +42,12 @@
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 		<header class="masthead mb-auto">
 			<div class="inner">
-				<h3 class="masthead-brand">CRUDDY TEA</h3>
+				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
 						href="browse.do">Inventory</a> <a class="nav-link"
 						href="addProduct.do">Add Tea</a> <a class="nav-link active"
-						href="updateProduct.do">Update Tea</a>
+						href="updateProduct.do">Update ${product.name}</a>
 				</nav>
 			</div>
 		</header>
