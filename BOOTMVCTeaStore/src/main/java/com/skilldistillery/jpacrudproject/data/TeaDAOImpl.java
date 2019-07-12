@@ -24,7 +24,7 @@ public class TeaDAOImpl implements TeaDAO {
 
 	@Override
 	public List<Tea> findAll() {
-		String query = "SELECT p FROM Product p";
+		String query = "SELECT tea FROM Tea tea";
 		List<Tea> products = em.createQuery(query, Tea.class).getResultList();
 		return products;
 	}
