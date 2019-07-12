@@ -38,7 +38,7 @@ class CategoryTest {
 	}
 
 	@Test
-	void test_Category_mappings() {
+	void test_Category_mapping() {
 		Category cat = em.find(Category.class, 1);
 		assertEquals(1, cat.getId());
 		assertEquals("Green", cat.getName());
@@ -46,7 +46,7 @@ class CategoryTest {
 	}
 	
 	@Test
-	void test_Category_has_Tea() {
+	void test_Category_has_Teas() {
 		Category cat = em.find(Category.class, 1);
 		assertEquals(3, cat.getTeas().size());
 	}

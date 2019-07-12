@@ -61,6 +61,76 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `inventorydb`.`tea_has_category`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `inventorydb`.`tea_has_category` ;
+
+CREATE TABLE IF NOT EXISTS `inventorydb`.`tea_has_category` (
+  `category_id` INT NOT NULL,
+  `tea_id` INT NOT NULL,
+  PRIMARY KEY (`category_id`, `tea_id`),
+  CONSTRAINT `fk_category_has_tea_category1`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `inventorydb`.`category` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_category_has_tea_tea1`
+    FOREIGN KEY (`tea_id`)
+    REFERENCES `inventorydb`.`tea` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_category_has_tea_tea1_idx` ON `inventorydb`.`tea_has_category` (`tea_id` ASC);
+
+CREATE INDEX `fk_category_has_tea_category1_idx` ON `inventorydb`.`tea_has_category` (`category_id` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `inventorydb`.`user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `inventorydb`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `inventorydb`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `create_date` TIMESTAMP NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `inventorydb`.`user_tea_review`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `inventorydb`.`user_tea_review` ;
+
+CREATE TABLE IF NOT EXISTS `inventorydb`.`user_tea_review` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `tea_id` INT NOT NULL,
+  `title` VARCHAR(250) NULL,
+  `review` TEXT NULL,
+  `rating` INT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_user_has_tea_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `inventorydb`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_tea_tea1`
+    FOREIGN KEY (`tea_id`)
+    REFERENCES `inventorydb`.`tea` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_user_has_tea_tea1_idx` ON `inventorydb`.`user_tea_review` (`tea_id` ASC);
+
+CREATE INDEX `fk_user_has_tea_user1_idx` ON `inventorydb`.`user_tea_review` (`user_id` ASC);
+
+
+-- -----------------------------------------------------
 -- Table `inventorydb`.`tea_supplier`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `inventorydb`.`tea_supplier` ;
@@ -85,74 +155,6 @@ DEFAULT CHARACTER SET = utf8;
 CREATE INDEX `fk_tea_has_supplier_supplier1_idx` ON `inventorydb`.`tea_supplier` (`supplier_id` ASC);
 
 CREATE INDEX `fk_tea_has_supplier_tea1_idx` ON `inventorydb`.`tea_supplier` (`tea_id` ASC);
-
-
--- -----------------------------------------------------
--- Table `inventorydb`.`category_has_tea`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventorydb`.`category_has_tea` ;
-
-CREATE TABLE IF NOT EXISTS `inventorydb`.`category_has_tea` (
-  `category_id` INT NOT NULL,
-  `tea_id` INT NOT NULL,
-  PRIMARY KEY (`category_id`, `tea_id`),
-  CONSTRAINT `fk_category_has_tea_category1`
-    FOREIGN KEY (`category_id`)
-    REFERENCES `inventorydb`.`category` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_category_has_tea_tea1`
-    FOREIGN KEY (`tea_id`)
-    REFERENCES `inventorydb`.`tea` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_category_has_tea_tea1_idx` ON `inventorydb`.`category_has_tea` (`tea_id` ASC);
-
-CREATE INDEX `fk_category_has_tea_category1_idx` ON `inventorydb`.`category_has_tea` (`category_id` ASC);
-
-
--- -----------------------------------------------------
--- Table `inventorydb`.`user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventorydb`.`user` ;
-
-CREATE TABLE IF NOT EXISTS `inventorydb`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `inventorydb`.`user_tea_review`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventorydb`.`user_tea_review` ;
-
-CREATE TABLE IF NOT EXISTS `inventorydb`.`user_tea_review` (
-  `user_id` INT NOT NULL,
-  `tea_id` INT NOT NULL,
-  `title` VARCHAR(250) NULL,
-  `review` TEXT NULL,
-  `rating` INT NULL,
-  PRIMARY KEY (`user_id`, `tea_id`),
-  CONSTRAINT `fk_user_has_tea_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `inventorydb`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_has_tea_tea1`
-    FOREIGN KEY (`tea_id`)
-    REFERENCES `inventorydb`.`tea` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_user_has_tea_tea1_idx` ON `inventorydb`.`user_tea_review` (`tea_id` ASC);
-
-CREATE INDEX `fk_user_has_tea_user1_idx` ON `inventorydb`.`user_tea_review` (`user_id` ASC);
 
 SET SQL_MODE = '';
 DROP USER IF EXISTS inventoryuser;
@@ -205,6 +207,26 @@ COMMIT;
 START TRANSACTION;
 USE `inventorydb`;
 INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (1, 'Cruddy Tea Supplier', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (2, 'Another Tea Supplier', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (3, 'Another Cruddy Supplier', '2019-07-11 11:11:11');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `inventorydb`.`tea_has_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `inventorydb`;
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (1, 1);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (1, 2);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (1, 3);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (4, 4);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (5, 6);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (7, 7);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (8, 8);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (2, 1);
+INSERT INTO `inventorydb`.`tea_has_category` (`category_id`, `tea_id`) VALUES (3, 1);
 
 COMMIT;
 
@@ -214,7 +236,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `inventorydb`;
-INSERT INTO `inventorydb`.`user` (`id`, `username`, `password`) VALUES (1, 'inventoryuser', 'inventoryuser');
+INSERT INTO `inventorydb`.`user` (`id`, `username`, `password`, `create_date`) VALUES (1, 'webuser', 'webuser', '2019-07-11 11:11:11');
 
 COMMIT;
 
@@ -224,6 +246,24 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `inventorydb`;
-INSERT INTO `inventorydb`.`user_tea_review` (`user_id`, `tea_id`, `title`, `review`, `rating`) VALUES (1, 1, 'A Review', 'This was cruddy tea', 1);
+INSERT INTO `inventorydb`.`user_tea_review` (`id`, `user_id`, `tea_id`, `title`, `review`, `rating`) VALUES (1, 1, 1, 'A Review', 'This was cruddy tea', 1);
+INSERT INTO `inventorydb`.`user_tea_review` (`id`, `user_id`, `tea_id`, `title`, `review`, `rating`) VALUES (2, 1, 1, 'Another Review', 'It was sooo cruddy', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `inventorydb`.`tea_supplier`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `inventorydb`;
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (1, 1);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (1, 2);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (3, 1);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (4, 2);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (5, 2);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (6, 2);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (7, 3);
+INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (8, 3);
 
 COMMIT;

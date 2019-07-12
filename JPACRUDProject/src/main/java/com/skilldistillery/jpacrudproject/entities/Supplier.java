@@ -30,7 +30,7 @@ public class Supplier {
 	private Date dateAcquired;
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "tea_supplier", 
+	@JoinTable(name = "tea_has_supplier", 
 	joinColumns = { @JoinColumn(name = "supplier_id") },
 	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
 	private List<Tea> tea;
