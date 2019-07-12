@@ -8,30 +8,30 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.jpacrudproject.entities.Product;
+import com.skilldistillery.jpacrudproject.entities.Tea;
 
 @Transactional
 @Service
-public class ProductDAOImpl implements ProductDAO {
+public class TeaDAOImpl implements TeaDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public Product findById(int id) {
-		return em.find(Product.class, id);
+	public Tea findById(int id) {
+		return em.find(Tea.class, id);
 	}
 
 	@Override
-	public List<Product> findAll() {
+	public List<Tea> findAll() {
 		String query = "SELECT p FROM Product p";
-		List<Product> products = em.createQuery(query, Product.class).getResultList();
+		List<Tea> products = em.createQuery(query, Tea.class).getResultList();
 		return products;
 	}
 
 	@Override
-	public Product update(Product product) {
-		Product updated = em.find(Product.class, product.getId());
+	public Tea update(Tea product) {
+		Tea updated = em.find(Tea.class, product.getId());
 		updated.setName(product.getName());
 		updated.setDescription(product.getDescription());
 		updated.setPrice(product.getPrice());
@@ -43,13 +43,13 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public boolean delete(int id) {
-		Product product = em.find(Product.class, id);
+		Tea product = em.find(Tea.class, id);
 		em.remove(product);
 		return true;
 	}
 
 	@Override
-	public Product create(Product product) {
+	public Tea create(Tea product) {
 		em.persist(product);
 		return product;
 	}
