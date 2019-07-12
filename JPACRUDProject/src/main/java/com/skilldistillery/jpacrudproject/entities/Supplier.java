@@ -1,10 +1,16 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Supplier {
@@ -17,7 +23,11 @@ public class Supplier {
 	private String name;
 
 	@Column(name="create_date")
-	private String dateAcquired;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateAcquired;
+	
+	@OneToMany(mappedBy="suppliers")
+	private List<Tea> teas;
 
 	public int getId() {
 		return id;
@@ -35,11 +45,11 @@ public class Supplier {
 		this.name = name;
 	}
 
-	public String getDateAcquired() {
+	public Date getDateAcquired() {
 		return dateAcquired;
 	}
 
-	public void setDateAcquired(String dateAcquired) {
+	public void setDateAcquired(Date dateAcquired) {
 		this.dateAcquired = dateAcquired;
 	}
 

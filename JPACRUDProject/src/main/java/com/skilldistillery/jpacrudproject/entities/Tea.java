@@ -1,10 +1,16 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Tea {
@@ -24,6 +30,27 @@ public class Tea {
 
 	@Column(name="img_url")
 	private String img;
+
+	@Column(name="update_time")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updateTime;
+	
+	@OneToMany
+	private List<Review> reviews;
+	
+	@OneToMany
+	private List<Category> categories;
+	
+	@OneToMany
+	private List<Supplier> suppliers;
+	
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public Tea() {
 
@@ -141,6 +168,30 @@ public class Tea {
 		if (qty != other.qty)
 			return false;
 		return true;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public List<Supplier> getSuppliers() {
+		return suppliers;
+	}
+
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
 	}
 
 }

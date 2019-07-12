@@ -1,9 +1,12 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -15,6 +18,9 @@ public class Category {
 	private String name;
 
 	private String description;
+	
+	@OneToMany(mappedBy = "categories")
+	private List<Tea> teas;
 
 	public int getId() {
 		return id;
@@ -68,6 +74,14 @@ public class Category {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Tea> getTeas() {
+		return teas;
+	}
+
+	public void setTeas(List<Tea> teas) {
+		this.teas = teas;
 	}
 
 }

@@ -1,9 +1,16 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class User {
@@ -16,6 +23,13 @@ public class User {
 
 	private String password;
 
+	@Column(name="create_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+	
+	@OneToMany(mappedBy = "author")
+	private List<Review> reviews;
+	
 	public int getId() {
 		return id;
 	}
@@ -67,6 +81,22 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 }

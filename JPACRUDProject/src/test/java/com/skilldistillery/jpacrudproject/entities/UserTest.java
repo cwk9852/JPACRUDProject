@@ -1,6 +1,7 @@
 package com.skilldistillery.jpacrudproject.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,9 +38,12 @@ class UserTest {
 	}
 
 	@Test
-	void test_Product_mappings() {
+	void test_User_mappings() {
 		User user = em.find(User.class, 1);
-		assertEquals("inventoryuser", user.getUsername());
+		assertEquals(1, user.getId());
+		assertEquals("webuser", user.getUsername());
+		assertEquals("webuser", user.getPassword());
+		assertNotNull(user.getReviews());
 	}
 	
 }
