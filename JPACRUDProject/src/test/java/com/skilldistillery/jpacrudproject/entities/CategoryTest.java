@@ -38,12 +38,11 @@ class CategoryTest {
 	}
 
 	@Test
-	void test_Product_mappings() {
+	void test_Category_mappings() {
 		Category cat = em.find(Category.class, 1);
 		assertEquals(1, cat.getId());
 		assertEquals("Green", cat.getName());
 		assertNotNull(cat.getDescription());
-		assertNotNull(cat.getTeas());
+		assertEquals(3, cat.getTeas().size());
 	}
-	
 }

@@ -3,11 +3,15 @@ package com.skilldistillery.jpacrudproject.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +30,10 @@ public class Supplier {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAcquired;
 	
-	@OneToMany(mappedBy="suppliers")
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "tea_supplier", 
+	joinColumns = { @JoinColumn(name = "supplier_id") },
+	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
 	private List<Tea> teas;
 
 	public int getId() {

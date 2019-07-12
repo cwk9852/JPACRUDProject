@@ -2,11 +2,14 @@ package com.skilldistillery.jpacrudproject.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Category {
@@ -19,8 +22,11 @@ public class Category {
 
 	private String description;
 	
-	@OneToMany(mappedBy = "categories")
-	private List<Tea> teas;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "tea_has_category", 
+	joinColumns = { @JoinColumn(name = "category_id") },
+	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
+	private List<Tea> tea;
 
 	public int getId() {
 		return id;
@@ -77,11 +83,11 @@ public class Category {
 	}
 
 	public List<Tea> getTeas() {
-		return teas;
+		return tea;
 	}
 
 	public void setTeas(List<Tea> teas) {
-		this.teas = teas;
+		this.tea = teas;
 	}
 
 }
