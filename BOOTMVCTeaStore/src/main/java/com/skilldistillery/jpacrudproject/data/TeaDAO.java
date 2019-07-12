@@ -2,18 +2,18 @@ package com.skilldistillery.jpacrudproject.data;
 
 import java.util.List;
 
-import com.skilldistillery.jpacrudproject.entities.Product;
+import com.skilldistillery.jpacrudproject.entities.Tea;
 
-public interface ProductDAO {
+public interface TeaDAO {
 
-	public Product findById(int id);
+	public Tea findById(int id);
 
-	public List<Product> findAll();
+	public List<Tea> findAll();
 
-	public Product update(Product product);
+	public Tea update(Tea product);
 
 	public boolean delete(int id);
 
-	public Product create(Product product);
+	public Tea create(Tea product);
 
 }

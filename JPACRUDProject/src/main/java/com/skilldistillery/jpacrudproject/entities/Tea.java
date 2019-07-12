@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Product {
+public class Tea {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,11 +22,11 @@ public class Product {
 
 	private String img;
 
-	public Product() {
+	public Tea() {
 
 	}
 
-	public Product(String name, String description, double price, int qty, String img) {
+	public Tea(String name, String description, double price, int qty, String img) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -34,7 +34,7 @@ public class Product {
 		this.img = img;
 	}
 
-	public Product(int id, String name, String description, double price, int qty) {
+	public Tea(int id, String name, String description, double price, int qty) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
@@ -115,7 +115,7 @@ public class Product {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		Tea other = (Tea) obj;
 		if (description == null) {
 			if (other.description != null)
 				return false;

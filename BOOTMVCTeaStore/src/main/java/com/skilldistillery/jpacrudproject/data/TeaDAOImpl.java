@@ -8,50 +8,50 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.jpacrudproject.entities.Product;
+import com.skilldistillery.jpacrudproject.entities.Tea;
 
 @Transactional
 @Service
-public class ProductDAOImpl implements ProductDAO {
+public class TeaDAOImpl implements TeaDAO {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public Product findById(int id) {
-		return em.find(Product.class, id);
+	public Tea findById(int id) {
+		return em.find(Tea.class, id);
 	}
 
 	@Override
-	public List<Product> findAll() {
-		String query = "SELECT p FROM Product p";
-		List<Product> products = em.createQuery(query, Product.class).getResultList();
+	public List<Tea> findAll() {
+		String query = "SELECT tea FROM Tea tea";
+		List<Tea> products = em.createQuery(query, Tea.class).getResultList();
 		return products;
 	}
 
 	@Override
-	public Product update(Product product) {
-		Product updated = em.find(Product.class, product.getId());
-		updated.setName(product.getName());
-		updated.setDescription(product.getDescription());
-		updated.setPrice(product.getPrice());
-		updated.setQty(product.getQty());
-		updated.setImg(product.getImg());
+	public Tea update(Tea tea) {
+		Tea updated = em.find(Tea.class, tea.getId());
+		updated.setName(tea.getName());
+		updated.setDescription(tea.getDescription());
+		updated.setPrice(tea.getPrice());
+		updated.setQty(tea.getQty());
+		updated.setImg(tea.getImg());
 		em.persist(updated);
 		return updated;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		Product product = em.find(Product.class, id);
-		em.remove(product);
+		Tea tea = em.find(Tea.class, id);
+		em.remove(tea);
 		return true;
 	}
 
 	@Override
-	public Product create(Product product) {
-		em.persist(product);
-		return product;
+	public Tea create(Tea tea) {
+		em.persist(tea);
+		return tea;
 	}
 
 }

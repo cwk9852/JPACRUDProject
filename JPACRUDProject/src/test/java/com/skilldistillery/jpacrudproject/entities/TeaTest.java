@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ProductTest {
+class TeaTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 
@@ -37,19 +37,10 @@ class ProductTest {
 	}
 
 	@Test
-	void test_Product_mappings() {
-		Product product = em.find(Product.class, 1);
+	void test_Tea_mappings() {
+		Tea product = em.find(Tea.class, 1);
 		assertEquals("Classic Chai", product.getName());
-		assertEquals(9.99, product.getPrice());
-		assertEquals(15, product.getQty());
+		assertEquals(1.99, product.getPrice());
+		assertEquals(1, product.getQty());
 	}
-	
-	@Test
-	void test_Update_product() {
-		Product product = em.find(Product.class, 1);
-		assertEquals("Classic Chai", product.getName());
-		assertEquals(9.99, product.getPrice());
-		assertEquals(15, product.getQty());
-	}
-	
 }
