@@ -57,8 +57,28 @@
 		<div>
 			<p>Price: $${product.price}</p>
 			<img alt="" src="${product.img}" height="250" width="250">
+			<h4>Description:</h4>
 			<p>${product.description}</p>
-			<p>Units In Stock: ${product.qty}</p>
+			<%-- <p>Units In Stock: ${product.qty}</p> --%>
+			<h4>Categories:</h4>
+			<c:forEach items="${product.categories}" var='c'>
+				${c.name}
+			</c:forEach>
+			<br>
+			<h4>Reviews:</h4>
+			<c:forEach items="${product.reviews}" var='r'>
+				Review Title: ${r.title}
+				Review: ${r.review}
+				Rating: ${r.rating}
+				<br>
+			</c:forEach>
+			<br>
+			<h4>Suppliers:</h4>
+			<c:forEach items="${product.suppliers}" var='s'>
+				${s.name}
+				<br>
+			</c:forEach>
+			<br>
 			<form action="updateProduct.do" method="GET">
 				<input type="hidden" value="${product.id }" name="id" /> <input
 					type="submit" value="Update Product"

@@ -1,5 +1,6 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,18 +23,17 @@ public class Supplier {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="company_name")
+	@Column(name = "company_name")
 	private String name;
 
-	@Column(name="create_date")
+	@Column(name = "create_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateAcquired;
-	
+
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "tea_has_supplier", 
-	joinColumns = { @JoinColumn(name = "supplier_id") },
-	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
-	private List<Tea> tea;
+	@JoinTable(name = "tea_has_supplier", joinColumns = { @JoinColumn(name = "supplier_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "tea_id") })
+	private List<Tea> teas;
 
 	public int getId() {
 		return id;
@@ -90,11 +90,28 @@ public class Supplier {
 	}
 
 	public List<Tea> getTeas() {
-		return tea;
+		return teas;
 	}
 
 	public void setTeas(List<Tea> teas) {
-		this.tea = teas;
+		this.teas = teas;
+	}
+
+	public void addTea(Tea tea) {
+		if (teas == null)
+			teas = new ArrayList<>();
+		if (!teas.contains(tea)) {
+			teas.add(tea);
+			tea.addSupplier(this);
+			;
+		}
+	}
+
+	public void removeTea(Tea tea) {
+		if (teas != null && teas.contains(tea)) {
+			teas.remove(tea);
+			tea.removeSupplier(this);
+		}
 	}
 
 }

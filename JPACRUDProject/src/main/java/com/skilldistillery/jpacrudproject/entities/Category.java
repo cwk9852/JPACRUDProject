@@ -1,5 +1,6 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,12 +22,12 @@ public class Category {
 	private String name;
 
 	private String description;
-	
+
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "tea_has_category", 
+	@JoinTable(name = "tea_has_category",
 	joinColumns = { @JoinColumn(name = "category_id") },
 	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
-	private List<Tea> tea;
+	private List<Tea> teas;
 
 	public int getId() {
 		return id;
@@ -83,11 +84,28 @@ public class Category {
 	}
 
 	public List<Tea> getTeas() {
-		return tea;
+		return teas;
 	}
 
 	public void setTeas(List<Tea> teas) {
-		this.tea = teas;
+		this.teas = teas;
+	}
+
+	public void addTea(Tea tea) {
+		if (teas == null)
+			teas = new ArrayList<>();
+		if (!teas.contains(tea)) {
+			teas.add(tea);
+			tea.addCategory(this);
+			;
+		}
+	}
+
+	public void removeTea(Tea tea) {
+		if (teas != null && teas.contains(tea)) {
+			teas.remove(tea);
+			tea.removeCategory(this);
+		}
 	}
 
 }

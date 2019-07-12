@@ -1,5 +1,6 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,25 +27,25 @@ public class Tea {
 
 	private double price;
 
-	@Column(name="kg_on_hand")
+	@Column(name = "kg_on_hand")
 	private int qty;
 
-	@Column(name="img_url")
+	@Column(name = "img_url")
 	private String img;
 
-	@Column(name="update_time")
+	@Column(name = "update_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
-	
-	@OneToMany(mappedBy ="tea")
+
+	@OneToMany(mappedBy = "tea")
 	private List<Review> reviews;
-	
-	@ManyToMany(mappedBy="tea")
+
+	@ManyToMany(mappedBy = "teas")
 	private List<Category> categories;
-	
-	@ManyToMany(mappedBy="tea")
+
+	@ManyToMany(mappedBy = "teas")
 	private List<Supplier> suppliers;
-	
+
 	public Date getUpdateTime() {
 		return updateTime;
 	}
@@ -195,4 +196,53 @@ public class Tea {
 		this.suppliers = suppliers;
 	}
 
+	public void addReview(Review review) {
+		if (reviews == null)
+			reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setTea(this);
+		}
+	}
+
+	public void removeReview(Review review) {
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+			review.setTea(this);
+		}
+	}
+
+	public void addCategory(Category category) {
+		if (categories == null)
+			categories = new ArrayList<>();
+		if (!categories.contains(category)) {
+			categories.add(category);
+			category.addTea(this);
+			;
+		}
+	}
+
+	public void removeCategory(Category category) {
+		if (categories != null && categories.contains(category)) {
+			categories.remove(category);
+			category.removeTea(this);
+		}
+	}
+
+	public void addSupplier(Supplier supplier) {
+		if (suppliers == null)
+			suppliers = new ArrayList<>();
+		if (!suppliers.contains(supplier)) {
+			suppliers.add(supplier);
+			supplier.addTea(this);
+			;
+		}
+	}
+
+	public void removeSupplier(Supplier supplier) {
+		if (suppliers != null && suppliers.contains(supplier)) {
+			suppliers.remove(supplier);
+			supplier.removeTea(this);
+		}
+	}
 }

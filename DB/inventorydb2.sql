@@ -53,9 +53,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `inventorydb`.`supplier` ;
 
 CREATE TABLE IF NOT EXISTS `inventorydb`.`supplier` (
-  `id` INT NOT NULL,
-  `company_name` VARCHAR(250) NOT NULL,
-  `create_date` TIMESTAMP NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `company_name` VARCHAR(250) NULL,
+  `create_date` TIMESTAMP NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -131,11 +131,11 @@ CREATE INDEX `fk_user_has_tea_user1_idx` ON `inventorydb`.`user_tea_review` (`us
 
 
 -- -----------------------------------------------------
--- Table `inventorydb`.`tea_supplier`
+-- Table `inventorydb`.`tea_has_supplier`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `inventorydb`.`tea_supplier` ;
+DROP TABLE IF EXISTS `inventorydb`.`tea_has_supplier` ;
 
-CREATE TABLE IF NOT EXISTS `inventorydb`.`tea_supplier` (
+CREATE TABLE IF NOT EXISTS `inventorydb`.`tea_has_supplier` (
   `tea_id` INT NOT NULL,
   `supplier_id` INT NOT NULL,
   PRIMARY KEY (`tea_id`, `supplier_id`),
@@ -152,9 +152,9 @@ CREATE TABLE IF NOT EXISTS `inventorydb`.`tea_supplier` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `fk_tea_has_supplier_supplier1_idx` ON `inventorydb`.`tea_supplier` (`supplier_id` ASC);
+CREATE INDEX `fk_tea_has_supplier_supplier1_idx` ON `inventorydb`.`tea_has_supplier` (`supplier_id` ASC);
 
-CREATE INDEX `fk_tea_has_supplier_tea1_idx` ON `inventorydb`.`tea_supplier` (`tea_id` ASC);
+CREATE INDEX `fk_tea_has_supplier_tea1_idx` ON `inventorydb`.`tea_has_supplier` (`tea_id` ASC);
 
 SET SQL_MODE = '';
 DROP USER IF EXISTS inventoryuser;
@@ -206,9 +206,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `inventorydb`;
-INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (1, 'Cruddy Tea Supplier', '2019-07-11 11:11:11');
-INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (2, 'Another Tea Supplier', '2019-07-11 11:11:11');
-INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (3, 'Another Cruddy Supplier', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (1, 'Cruddy Tea Supplier 1', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (2, 'Cruddy Tea Supplier 2', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (3, 'Cruddy Tea Supplier 3', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (4, 'Cruddy Tea Supplier 4', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (5, 'Cruddy Tea Supplier 5', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (6, 'Cruddy Tea Supplier 6', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (7, 'Cruddy Tea Supplier 7', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (8, 'Cruddy Tea Supplier 8', '2019-07-11 11:11:11');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `create_date`) VALUES (DEFAULT, NULL, '2019-07-11 11:11:11');
 
 COMMIT;
 
@@ -253,17 +259,17 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `inventorydb`.`tea_supplier`
+-- Data for table `inventorydb`.`tea_has_supplier`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `inventorydb`;
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (1, 1);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (1, 2);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (3, 1);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (4, 2);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (5, 2);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (6, 2);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (7, 3);
-INSERT INTO `inventorydb`.`tea_supplier` (`tea_id`, `supplier_id`) VALUES (8, 3);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (1, 1);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (1, 2);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (3, 1);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (4, 2);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (5, 2);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (6, 2);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (7, 3);
+INSERT INTO `inventorydb`.`tea_has_supplier` (`tea_id`, `supplier_id`) VALUES (8, 3);
 
 COMMIT;

@@ -1,5 +1,6 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,16 +27,15 @@ public class User {
 
 	private String password;
 
-	@Column(name="create_date")
+	@Column(name = "create_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
-	
+
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "user_tea_review", 
-	joinColumns = { @JoinColumn(name = "user_id") },
-	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
+	@JoinTable(name = "user_tea_review", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "tea_id") })
 	private List<Review> reviews;
-	
+
 	public int getId() {
 		return id;
 	}
@@ -106,4 +105,19 @@ public class User {
 		this.reviews = reviews;
 	}
 
+	public void addReview(Review review) {
+		if (reviews == null)
+			reviews = new ArrayList<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setAuthor(this);
+			;
+		}
+	}
+
+	public void removeReview(Review review) {
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+		}
+	}
 }
