@@ -33,8 +33,8 @@ public class User {
 	
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "user_tea_review", 
-	joinColumns = { @JoinColumn(name = "review_id") },
-	inverseJoinColumns = { @JoinColumn(name = "user_id") })
+	joinColumns = { @JoinColumn(name = "user_id") },
+	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
 	private List<Review> reviews;
 	
 	public int getId() {

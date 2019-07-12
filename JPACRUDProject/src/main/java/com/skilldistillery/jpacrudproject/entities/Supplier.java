@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,7 +33,7 @@ public class Supplier {
 	@JoinTable(name = "tea_supplier", 
 	joinColumns = { @JoinColumn(name = "supplier_id") },
 	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
-	private List<Tea> teas;
+	private List<Tea> tea;
 
 	public int getId() {
 		return id;
@@ -88,6 +87,14 @@ public class Supplier {
 		builder.append("Supplier [id=").append(id).append(", name=").append(name).append(", dateAcquired=")
 				.append(dateAcquired).append("]");
 		return builder.toString();
+	}
+
+	public List<Tea> getTeas() {
+		return tea;
+	}
+
+	public void setTeas(List<Tea> teas) {
+		this.tea = teas;
 	}
 
 }

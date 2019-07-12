@@ -38,11 +38,17 @@ class SupplierTest {
 	}
 
 	@Test
-	void test_Product_mappings() {
+	void test_Supplier_mappings() {
 		Supplier supplier = em.find(Supplier.class, 1);
 		assertEquals(1, supplier.getId());
 		assertEquals("Cruddy Tea Supplier", supplier.getName());
 		assertNotNull(supplier.getDateAcquired());
 	}
-	
+
+	@Test
+	void test_Supplier_has_Teas() {
+		Supplier supplier = em.find(Supplier.class, 1);
+		assertEquals(3, supplier.getTeas().size());
+	}
+
 }

@@ -43,6 +43,11 @@ class CategoryTest {
 		assertEquals(1, cat.getId());
 		assertEquals("Green", cat.getName());
 		assertNotNull(cat.getDescription());
+	}
+	
+	@Test
+	void test_Category_has_Tea() {
+		Category cat = em.find(Category.class, 1);
 		assertEquals(3, cat.getTeas().size());
 	}
 }

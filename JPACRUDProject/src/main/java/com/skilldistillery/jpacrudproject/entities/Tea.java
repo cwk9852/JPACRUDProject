@@ -3,14 +3,11 @@ package com.skilldistillery.jpacrudproject.entities;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -39,16 +36,13 @@ public class Tea {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateTime;
 	
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "user_tea_review", 
-	joinColumns = { @JoinColumn(name = "tea_id") },
-	inverseJoinColumns = { @JoinColumn(name = "review_id") })
+	@OneToMany(mappedBy ="tea")
 	private List<Review> reviews;
 	
 	@ManyToMany(mappedBy="tea")
 	private List<Category> categories;
 	
-	@OneToMany
+	@ManyToMany(mappedBy="tea")
 	private List<Supplier> suppliers;
 	
 	public Date getUpdateTime() {
