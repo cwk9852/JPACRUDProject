@@ -48,6 +48,6 @@ class CategoryTest {
 	@Test
 	void test_Category_has_Teas() {
 		Category cat = em.find(Category.class, 1);
-		assertEquals(3, cat.getTeas().size());
+		assertEquals(2, cat.getTeas().size());
 	}
 }

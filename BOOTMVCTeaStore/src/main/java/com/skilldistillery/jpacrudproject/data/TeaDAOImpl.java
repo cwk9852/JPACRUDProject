@@ -27,33 +27,36 @@ public class TeaDAOImpl implements TeaDAO {
 	@Override
 	public List<Tea> findAll() {
 		String query = "SELECT tea FROM Tea tea";
-		List<Tea> products = em.createQuery(query, Tea.class).getResultList();
-		return products;
+		List<Tea> teas = em.createQuery(query, Tea.class).getResultList();
+		return teas;
 	}
 
 	@Override
-	public boolean update(Tea product) {
-		Tea updated = em.find(Tea.class, product.getId());
-		updated.setName(product.getName());
-		updated.setDescription(product.getDescription());
-		updated.setPrice(product.getPrice());
-		updated.setQty(product.getQty());
-		updated.setImg(product.getImg());
+	public boolean update(Tea tea) {
+		Tea updated = em.find(Tea.class, tea.getId());
+		updated.setName(tea.getName());
+		updated.setDescription(tea.getDescription());
+		updated.setPrice(tea.getPrice());
+		updated.setQty(tea.getQty());
+		updated.setImg(tea.getImg());
 		em.persist(updated);
 		return true;
 	}
 
 	@Override
 	public boolean deleteTea(int id) {
-		Tea product = em.find(Tea.class, id);
-		em.remove(product);
+		Tea tea = em.find(Tea.class, id);
+		tea.setCategories(null);
+		tea.setSuppliers(null);
+		tea.setReviews(null);
+		em.remove(tea);
 		return true;
 	}
 
 	@Override
-	public Tea create(Tea product) {
-		em.persist(product);
-		return product;
+	public Tea create(Tea tea) {
+		em.persist(tea);
+		return tea;
 	}
 
 	@Override

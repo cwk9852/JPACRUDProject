@@ -39,7 +39,6 @@ class ReviewTest {
 	@Test
 	void test_Review_mapping() {
 		Review review = em.find(Review.class, 1);
-		assertEquals(1, review.getId());
 		assertEquals(1, review.getAuthor().getId());
 		assertEquals(1, review.getTea().getId());
 		assertEquals("A Review", review.getTitle());

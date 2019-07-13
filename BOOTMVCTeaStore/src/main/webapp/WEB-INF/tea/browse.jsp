@@ -70,7 +70,7 @@
 								width="100"></td>
 							<td>${p.description }<br></td>
 							<td>
-								<form action=gettea.do method="GET">
+								<form action=findTea.do method="GET">
 									<input type="hidden" value="${p.id }" name="id" /> <input
 										type="submit" value="Details" class="btn btn-outline-success" />
 								</form>
@@ -90,8 +90,8 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-				<form class="nav-link" action="getTea.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find Tea by ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success"/>
 				</form>
 			</div>

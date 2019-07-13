@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Add Cruddy Tea</title>
+<title>Add Cruddy Tea Supplier</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -70,8 +70,8 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-				<form class="nav-link" action="getTea.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success"/>
 				</form>
 			</div>

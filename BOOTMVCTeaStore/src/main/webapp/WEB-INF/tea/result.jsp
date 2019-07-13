@@ -70,7 +70,7 @@
 				<img alt="" src="${tea.img}" height="250" width="250">
 				<h4>Description:</h4>
 				<p>${tea.description}</p>
-				<p>Amount In Stock: ${tea.qty} kg</p>
+				<p>Quantity In Stock: ${tea.qty} kg</p>
 				<h4>Categories:</h4>
 				<c:forEach items="${tea.categories}" var='c'>
 				${c.name}
@@ -89,12 +89,12 @@
 				<br>
 				</c:forEach>
 				<br>
-				<form action="updatetea.do" method="GET">
+				<form action="updateTea.do" method="GET">
 					<input type="hidden" value="${tea.id }" name="id" /> <input
-						type="submit" value="Update tea"
+						type="submit" value="Update Tea"
 						class="btn btn-outline-success" />
 				</form>
-				<form action="deleteTea" method="POST">
+				<form action="deleteTea.do" method="GET">
 					<input type="hidden" value="${tea.id }" name="id" /> <input
 						type="submit" value="Delete" class="btn btn-outline-danger" />
 				</form>
@@ -107,8 +107,8 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-				<form class="nav-link" action="getTea.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>

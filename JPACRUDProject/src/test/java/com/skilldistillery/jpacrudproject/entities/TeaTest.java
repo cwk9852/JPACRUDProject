@@ -39,36 +39,34 @@ class TeaTest {
 
 	@Test
 	void test_Tea_mappings() {
-		Tea product = em.find(Tea.class, 1);
-		assertEquals(1, product.getId());
-		assertEquals("Classic Chai", product.getName());
-		assertNotNull(product.getDescription());
-		assertEquals(1.99, product.getPrice());
-		assertEquals(14, product.getQty());
-		assertNotNull(product.getImg());
+		Tea tea = em.find(Tea.class, 1);
+		assertEquals(1, tea.getId());
+		assertEquals("Classic Chai", tea.getName());
+		assertNotNull(tea.getDescription());
+		assertEquals(1.99, tea.getPrice());
+		assertEquals(14, tea.getQty());
+		assertNotNull(tea.getImg());
 	}
 
 	@Test
 	void test_Tea_has_Categories() {
-		Tea product = em.find(Tea.class, 1);
-		assertEquals(3, product.getCategories().size());
+		Tea tea = em.find(Tea.class, 1);
+		assertEquals(3, tea.getCategories().size());
 
 	}
 
 	@Test
 	void test_Tea_has_Suppliers() {
-		Tea product = em.find(Tea.class, 1);
-		assertEquals(2, product.getSuppliers().size());
+		Tea tea = em.find(Tea.class, 1);
+		assertEquals(1, tea.getSuppliers().size());
 
 	}
-	
+
 	@Test
 	void test_Tea_has_Reviews() {
-		Tea product = em.find(Tea.class, 1);
-		assertEquals(2, product.getReviews().size());
-		
+		Tea tea = em.find(Tea.class, 1);
+		assertEquals(2, tea.getReviews().size());
+
 	}
-	
-	
 
 }

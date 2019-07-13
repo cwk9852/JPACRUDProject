@@ -1,18 +1,15 @@
 package com.skilldistillery.jpacrudproject.entities;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,10 +28,8 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "user_tea_review", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "tea_id") })
-	private List<Review> reviews;
+	@OneToMany(mappedBy="author")
+	private Set<Review> reviews;
 
 	public int getId() {
 		return id;
@@ -97,17 +92,17 @@ public class User {
 		this.createDate = createDate;
 	}
 
-	public List<Review> getReviews() {
+	public Set<Review> getReviews() {
 		return reviews;
 	}
 
-	public void setReviews(List<Review> reviews) {
+	public void setReviews(HashSet<Review> reviews) {
 		this.reviews = reviews;
 	}
 
 	public void addReview(Review review) {
 		if (reviews == null)
-			reviews = new ArrayList<>();
+			reviews = new HashSet<>();
 		if (!reviews.contains(review)) {
 			reviews.add(review);
 			review.setAuthor(this);

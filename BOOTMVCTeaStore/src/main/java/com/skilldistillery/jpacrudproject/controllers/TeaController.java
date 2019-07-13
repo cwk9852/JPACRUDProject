@@ -58,7 +58,7 @@ public class TeaController {
 	}
 
 	@RequestMapping(path = "updateTea.do", params = "id", method = RequestMethod.GET)
-	public String update(@RequestParam("id") Integer id, Model model) {
+	public String update(Model model, @RequestParam("id") Integer id) {
 		Tea tea = dao.findById(id);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/update.jsp";
@@ -73,7 +73,7 @@ public class TeaController {
 		return "WEB-INF/tea/result.jsp";
 	}
 
-	@RequestMapping(path = "deleteTea.do", params = "id", method = RequestMethod.POST)
+	@RequestMapping(path = "deleteTea.do", params = "id")
 	public String deletetea(Model model, @RequestParam("id") Integer id) {
 		Tea tea = dao.findById(id);
 		Boolean deleted = dao.deleteTea(id);
@@ -82,8 +82,8 @@ public class TeaController {
 		return "WEB-INF/tea/result.jsp";
 	}
 
-	@RequestMapping(path = "getTea.do", params = "id")
-	public String showtea(@RequestParam("id") Integer id, Model model) {
+	@RequestMapping(path = "findTea.do", params = "id")
+	public String showtea(Model model, @RequestParam("id") Integer id) {
 		Tea tea = dao.findById(id);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/result.jsp";

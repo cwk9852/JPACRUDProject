@@ -1,15 +1,12 @@
 package com.skilldistillery.jpacrudproject.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -23,11 +20,8 @@ public class Category {
 
 	private String description;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "tea_has_category",
-	joinColumns = { @JoinColumn(name = "category_id") },
-	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
-	private List<Tea> teas;
+	@ManyToMany(mappedBy = "categories")
+	private Set<Tea> teas;
 
 	public int getId() {
 		return id;
@@ -83,17 +77,17 @@ public class Category {
 		this.description = description;
 	}
 
-	public List<Tea> getTeas() {
+	public Set<Tea> getTeas() {
 		return teas;
 	}
 
-	public void setTeas(List<Tea> teas) {
+	public void setTeas(Set<Tea> teas) {
 		this.teas = teas;
 	}
 
 	public void addTea(Tea tea) {
 		if (teas == null)
-			teas = new ArrayList<>();
+			teas = new HashSet<>();
 		if (!teas.contains(tea)) {
 			teas.add(tea);
 			tea.addCategory(this);

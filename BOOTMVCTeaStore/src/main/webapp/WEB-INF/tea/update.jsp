@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Update ${product.name}</title>
+<title>Update ${tea.name}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -46,49 +46,49 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
 						href="browse.do">Inventory</a> <a class="nav-link"
-						href="addProduct.do">Add Tea</a> <a class="nav-link active"
-						href="updateProduct.do">Update ${product.name}</a>
+						href="addTea.do">Add Tea</a> <a class="nav-link active"
+						href="updateTea.do">Update ${tea.name}</a>
 				</nav>
 			</div>
 		</header>
 		<main role="main" class="inner cover">
-		<form action="updateProduct.do" modelAttribute="product" method="POST">
-			<h4>Update:<br> ${product.name }</h4>
+		<form action="updateTea.do" modelAttribute="tea" method="POST">
+			<h4>Update:<br> ${tea.name }</h4>
 			<table>
 				<tr>
 					<td></td>
-					<td><img alt="" src="${product.img}" height="250" width="250"></td>
+					<td><img alt="" src="${tea.img}" height="250" width="250"></td>
 				</tr>
 				<tr>
 					<td><input type="hidden" name="id" size="30" placeholder="#"
-						value="${product.id }" /></td>
+						value="${tea.id }" /></td>
 				</tr>
 				<tr>
 					<td><strong>Name :</strong></td>
 					<td><input type="text" name="name" size="30"
-						placeholder="Chocolate Chai Mocha Mate" value="${product.name}" /></td>
+						placeholder="Chocolate Chai Mocha Mate" value="${tea.name}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Description :</strong></td>
 					<td><input type="text" name="description" size="30"
-						placeholder="Some description....." value="${product.description}" /></td>
+						placeholder="Some description....." value="${tea.description}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Price ($):</strong></td>
 					<td><input type="text" name="price" size="30"
-						placeholder="9.99" value="${product.price}" /></td>
+						placeholder="9.99" value="${tea.price}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Quantity in Stock(kg) :</strong></td>
 					<td><input type="text" name="qty" size="30" placeholder="1-25"
-						value="${product.qty}" /></td>
+						value="${tea.qty}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Image URL :</strong></td>
 					<td><input type="text" name="img" size="30"
-						placeholder="http://../" value="${product.img}" /></td>
+						placeholder="http://../" value="${tea.img}" /></td>
 				</tr>
-<!-- 				<tr>
+<!-- 			<tr>
 					<td><strong>Categories :</strong></td>
 					<td><input type="text" name="categories" size="30"
 						placeholder="http://../"
@@ -114,8 +114,8 @@
 				</p>
 			</div>
 			<div class="inner">
-				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>

@@ -46,9 +46,9 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="home.do">Home</a> <a
 						class="nav-link" href="browse.do">Inventory</a> <a
-						class="nav-link" href="addTea.do">Add Tea</a><a
-						class="nav-link" href="addSupplier.do">Add Supplier</a> <a
-						class="nav-link" href="addCategory.do">Add Category</a>
+						class="nav-link" href="addTea.do">Add Tea</a><a class="nav-link"
+						href="addSupplier.do">Add Supplier</a> <a class="nav-link"
+						href="addCategory.do">Add Category</a>
 				</nav>
 			</div>
 		</header>
@@ -58,14 +58,14 @@
 			<em>Tea Spotlight</em>
 		</h3>
 		<p class="lead">
-			<img alt="${teas.get(0).img}" src="${teas.get(0).img}"
-				height="250" width="250">
+			<img alt="${teas.get(0).img}" src="${teas.get(0).img}" height="250"
+				width="250">
 		</p>
 		<p class="lead">${teas.get(0).name}</p>
 		<p class="lead">${teas.get(0).description}</p>
 		<p class="lead">
-			<a href="gettea.do?id=${teas.get(0).id}"
-				class="btn btn-outline btn-secondary">Learn more</a>
+			<a href="findTea.do?id=${teas.get(0).id}"
+				class="btn btn-outline btn-secondary">Learn More</a>
 		</p>
 		</main>
 
@@ -75,8 +75,8 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-				<form class="nav-link" action="getTea.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>

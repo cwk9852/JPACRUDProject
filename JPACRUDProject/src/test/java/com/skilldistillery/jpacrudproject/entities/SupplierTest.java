@@ -42,7 +42,7 @@ class SupplierTest {
 		Supplier supplier = em.find(Supplier.class, 1);
 		assertEquals(1, supplier.getId());
 		assertNotNull(supplier.getDateAcquired());
-		assertEquals("Cruddy Tea Supplier 1", supplier.getName());
+		assertEquals("Rishi Tea and Botanicals", supplier.getName());
 	}
 
 	@Test

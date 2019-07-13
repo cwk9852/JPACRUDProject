@@ -47,7 +47,7 @@ class UserTest {
 	@Test
 	void test_User_has_Reviews() {
 		User user = em.find(User.class, 1);
-		assertEquals(2, user.getReviews().size());
+		assertEquals(16, user.getReviews().size());
 
 	}
 

@@ -1,5 +1,8 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "user_tea_review")
@@ -24,19 +31,16 @@ public class Review {
 	@JoinColumn(name = "tea_id")
 	private Tea tea;
 
+	@Column(name = "create_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date dateAuthored;
+
 	private String title;
 
 	private String review;
 
 	private int rating;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getTitle() {
 		return title;
@@ -62,13 +66,36 @@ public class Review {
 		this.rating = rating;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Review [id=").append(id).append(", author=").append(author).append(", tea=").append(tea)
-				.append(", title=").append(title).append(", review=").append(review).append(", rating=").append(rating)
-				.append("]");
-		return builder.toString();
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
+	public Tea getTea() {
+		return tea;
+	}
+
+	public void setTea(Tea tea) {
+		this.tea = tea;
+	}
+
+	public Date getDateAuthored() {
+		return dateAuthored;
+	}
+
+	public void setDateAuthored(Date dateAuthored) {
+		this.dateAuthored = dateAuthored;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override
@@ -91,22 +118,6 @@ public class Review {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
-	public Tea getTea() {
-		return tea;
-	}
-
-	public void setTea(Tea tea) {
-		this.tea = tea;
 	}
 
 }
