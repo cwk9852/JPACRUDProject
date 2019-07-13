@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Add Cruddy Tea</title>
+<title>Cruddy Tea Inventory</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -45,46 +45,43 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link" href="viewAllTea.do">View Teas</a> <a
-						class="nav-link active" href="addTea.do">Add Tea</a>
+						class="nav-link active" href="viewAllTea.do">View Teas</a> <a
+						class="nav-link" href="addTea.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>
 
-		<main role="main" class="inner cover">
-		<form action="addTea.do" modelAttribute="product" method="POST">
-			<h4>Add Cruddy Tea</h4>
-			<table>
-				<tr>
-					<td><strong>Name :</strong></td>
-					<td><input type="text" name="name" size="30"
-						placeholder="Chocolate Chai Mocha Mate" /></td>
-				</tr>
-				<tr>
-
-					<td><strong>Description :</strong></td>
-					<td><input type="text" name="description" size="30"
-						placeholder="Some very wordy thing you just made up." /></td>
-				</tr>
-				<tr>
-					<td><strong>Price :</strong></td>
-					<td><input type="text" name="price" size="30"
-						placeholder="9.99" /></td>
-				</tr>
-				<tr>
-					<td><strong>Quantity :</strong></td>
-					<td><input type="text" name="qty" size="30" placeholder="1-25" /></td>
-				</tr>
-				<tr>
-					<td><strong>Image URL :</strong></td>
-					<td><input type="text" name="img" size="30"
-						placeholder="http://../" /></td>
-				</tr>
-			</table>
-			<input type="submit" value="Add Tea" class="btn btn-outline-success" />
-		</form>
-		</main>
-
+		<main role="main" class="inner cover"> <c:choose>
+			<c:when test="${! empty teas}">
+				<table>
+					<tr>
+						<th scope="col">tea ID</th>
+						<th scope="col">Name</th>
+						<th scope="col"></th>
+						<th scope="col">Description</th>
+						<th scope="col">Details</th>
+					</tr>
+					<c:forEach items="${teas}" var="p">
+						<tr>
+							<td>${p.id}</td>
+							<td>${p.name}</td>
+							<td><img src="${p.img}" alt="${p.name}" height="100"
+								width="100"></td>
+							<td>${p.description }<br></td>
+							<td>
+								<form action="findTea.do" method="GET">
+									<input type="hidden" value="${p.id }" name="id" /> <input
+										type="submit" value="Details" class="btn btn-outline-success" />
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<h2>tea List Not Found</h2>
+			</c:otherwise>
+		</c:choose> </main>
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
@@ -92,8 +89,8 @@
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
 				<form class="nav-link" action="findTea.do" method="GET">
-					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
-						type="submit" value="Find Tea" class="btn btn-outline-success"/>
+					<input type="text" name="id" placeholder="Find Tea by ID" /> <input
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>
 		</footer>

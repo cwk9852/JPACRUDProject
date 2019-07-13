@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Cruddy Tea: ${tea.name}</title>
+<title>Update ${tea.name}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -44,62 +44,67 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
-						href="browse.do">Inventory</a> <a class="nav-link"
+						href="viewAllTea.do">View Teas</a> <a class="nav-link"
 						href="addTea.do">Add Tea</a> <a class="nav-link active"
-						href="#">${tea.name}</a>
+						href="updateTea.do">Update ${tea.name}</a>
 				</nav>
 			</div>
 		</header>
 		<main role="main" class="inner cover">
-		<c:if test="${ updated }">
-			<h2>Updated</h2>
-		</c:if>
-		<c:if test="${ deleted }">
-			<h2>Deleted</h2>
-		</c:if>
-		<h2>${tea.name}</h2>
-		<c:if test="${! empty supplier }">
-			<h4>Supplier Added</h4>
-			<p>Supplier ID: ${supplier.id }</p>
-			<p>Supplier Name: ${supplier.name }</p>
-		</c:if>  <c:if test="${! empty tea }">
-			<div>
-				<p>Price: $${tea.price}</p>
-				<img alt="" src="${tea.img}" height="250" width="250">
-				<h4>Description:</h4>
-				<p>${tea.description}</p>
-				<p>Quantity In Stock: ${tea.qty} kg</p>
-				<h4>Categories:</h4>
-				<c:forEach items="${tea.categories}" var='c'>
-				${c.name}
-			</c:forEach>
-				<br>
-				<h4>Reviews:</h4>
-				<c:forEach items="${tea.reviews}" var='r'>
-				Review Title: ${r.title}
-				Review: ${r.review}
-				Rating: ${r.rating}
-				<br>
-				</c:forEach>
-				<h4>Suppliers:</h4>
-				<c:forEach items="${tea.suppliers}" var='s'>
-				${s.name}
-				<br>
-				</c:forEach>
-				<br>
-				<form action="updateTea.do" method="GET">
-					<input type="hidden" value="${tea.id }" name="id" /> <input
-						type="submit" value="Update Tea"
-						class="btn btn-outline-success" />
-				</form>
-				<form action="deleteTea.do" method="GET">
-					<input type="hidden" value="${tea.id }" name="id" /> <input
-						type="submit" value="Delete" class="btn btn-outline-danger" />
-				</form>
-			</div>
-		</c:if> </main>
+		<form action="updateTea.do" modelAttribute="tea" method="POST">
+			<h4>Update:<br> ${tea.name }</h4>
+			<table>
+				<tr>
+					<td></td>
+					<td><img alt="" src="${tea.img}" height="250" width="250"></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="id" size="30" placeholder="#"
+						value="${tea.id }" /></td>
+				</tr>
+				<tr>
+					<td><strong>Name :</strong></td>
+					<td><input type="text" name="name" size="30"
+						placeholder="Chocolate Chai Mocha Mate" value="${tea.name}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Description :</strong></td>
+					<td><input type="text" name="description" size="30"
+						placeholder="Some description....." value="${tea.description}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Price ($):</strong></td>
+					<td><input type="text" name="price" size="30"
+						placeholder="9.99" value="${tea.price}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Quantity in Stock(kg) :</strong></td>
+					<td><input type="text" name="qty" size="30" placeholder="1-25"
+						value="${tea.qty}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Image URL :</strong></td>
+					<td><input type="text" name="img" size="30"
+						placeholder="http://../" value="${tea.img}" /></td>
+				</tr>
+<!-- 			<tr>
+					<td><strong>Categories :</strong></td>
+					<td><input type="text" name="categories" size="30"
+						placeholder="http://../"
+						value="" /></td>
+				</tr>
+				<tr>
+					<td><strong>Suppliers :</strong></td>
+					<td><input type="text" name="suppliers" size="30"
+						placeholder="" /></td>
+				</tr> -->
+			</table>
+			<input type="submit" value="Update Tea"
+				class="btn btn-outline-success" />
+		</form>
+		<br>
+		</main>
 
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
@@ -107,6 +112,8 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
+			</div>
+			<div class="inner">
 				<form class="nav-link" action="findTea.do" method="GET">
 					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success" />

@@ -44,15 +44,15 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link" href="browse.do">Inventory</a> <a
-						class="nav-link active" href="addTea.do">Add Tea</a>
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
+						href="viewAllTea.do">View Teas</a> <a class="nav-link active"
+						href="addSupplier.do">Add Supplier</a>
 				</nav>
 			</div>
 		</header>
-
 		<main role="main" class="inner cover">
 		<form action="addSupplier.do" modelAttribute="supplier" method="POST">
+			<h4>Add Cruddy Tea Supplier</h4>
 			<table>
 				<tr>
 					<td><strong>Name :</strong></td>
@@ -60,7 +60,8 @@
 						placeholder="Chocolate Chai Mocha Mate" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Add Supplier" class="btn btn-outline-success" />
+			<input type="submit" value="Add Supplier"
+				class="btn btn-outline-success" />
 		</form>
 		</main>
 
@@ -72,7 +73,7 @@
 				</p>
 				<form class="nav-link" action="findTea.do" method="GET">
 					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
-						type="submit" value="Find Tea" class="btn btn-outline-success"/>
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>
 		</footer>

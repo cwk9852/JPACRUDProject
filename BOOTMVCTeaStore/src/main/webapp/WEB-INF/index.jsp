@@ -45,7 +45,8 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="home.do">Home</a> <a
-						class="nav-link" href="browse.do">Inventory</a> <a
+						class="nav-link" href="viewAllTea.do">Teas</a>
+						<a class="nav-link" href="viewCategories.do">Categories</a> <a
 						class="nav-link" href="addTea.do">Add Tea</a><a class="nav-link"
 						href="addSupplier.do">Add Supplier</a> <a class="nav-link"
 						href="addCategory.do">Add Category</a>
@@ -71,14 +72,14 @@
 
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
-				<p>
-					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
-					by <a href="https://twitter.com/mdo">@mdo</a>.
-				</p>
 				<form class="nav-link" action="findTea.do" method="GET">
 					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
+				<p>
+					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
+					by <a href="https://twitter.com/mdo">@mdo</a>.
+				</p>
 			</div>
 		</footer>
 	</div>
