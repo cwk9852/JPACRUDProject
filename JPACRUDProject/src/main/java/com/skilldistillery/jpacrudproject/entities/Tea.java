@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Tea {
 
@@ -35,6 +37,7 @@ public class Tea {
 
 	@Column(name = "update_time")
 	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	private Date updateTime;
 
 	@OneToMany(mappedBy = "tea")

@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Cruddy Tea</title>
+<title>Cruddy Tea: ${tea.name}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -44,30 +44,62 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link active" href="home.do">Home</a> <a
-						class="nav-link" href="browse.do">Inventory</a> <a
-						class="nav-link" href="addTea.do">Add Tea</a><a
-						class="nav-link" href="addSupplier.do">Add Supplier</a> <a
-						class="nav-link" href="addCategory.do">Add Category</a>
+
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
+						href="browse.do">Inventory</a> <a class="nav-link"
+						href="addTea.do">Add Tea</a> <a class="nav-link active"
+						href="#">${tea.name}</a>
 				</nav>
 			</div>
 		</header>
-
 		<main role="main" class="inner cover">
-		<h3 class="cover-heading">
-			<em>Tea Spotlight</em>
-		</h3>
-		<p class="lead">
-			<img alt="${teas.get(0).img}" src="${teas.get(0).img}"
-				height="250" width="250">
-		</p>
-		<p class="lead">${teas.get(0).name}</p>
-		<p class="lead">${teas.get(0).description}</p>
-		<p class="lead">
-			<a href="gettea.do?id=${teas.get(0).id}"
-				class="btn btn-outline btn-secondary">Learn more</a>
-		</p>
-		</main>
+		<c:if test="${ updated }">
+			<h2>Updated</h2>
+		</c:if>
+		<c:if test="${ deleted }">
+			<h2>Deleted</h2>
+		</c:if>
+		<h2>${tea.name}</h2>
+		<c:if test="${! empty supplier }">
+			<h4>Supplier Added</h4>
+			<p>Supplier ID: ${supplier.id }</p>
+			<p>Supplier Name: ${supplier.name }</p>
+		</c:if>  <c:if test="${! empty tea }">
+			<div>
+				<p>Price: $${tea.price}</p>
+				<img alt="" src="${tea.img}" height="250" width="250">
+				<h4>Description:</h4>
+				<p>${tea.description}</p>
+				<p>Amount In Stock: ${tea.qty} kg</p>
+				<h4>Categories:</h4>
+				<c:forEach items="${tea.categories}" var='c'>
+				${c.name}
+			</c:forEach>
+				<br>
+				<h4>Reviews:</h4>
+				<c:forEach items="${tea.reviews}" var='r'>
+				Review Title: ${r.title}
+				Review: ${r.review}
+				Rating: ${r.rating}
+				<br>
+				</c:forEach>
+				<h4>Suppliers:</h4>
+				<c:forEach items="${tea.suppliers}" var='s'>
+				${s.name}
+				<br>
+				</c:forEach>
+				<br>
+				<form action="updatetea.do" method="GET">
+					<input type="hidden" value="${tea.id }" name="id" /> <input
+						type="submit" value="Update tea"
+						class="btn btn-outline-success" />
+				</form>
+				<form action="deleteTea" method="POST">
+					<input type="hidden" value="${tea.id }" name="id" /> <input
+						type="submit" value="Delete" class="btn btn-outline-danger" />
+				</form>
+			</div>
+		</c:if> </main>
 
 		<footer class="mastfoot mt-auto">
 			<div class="inner">

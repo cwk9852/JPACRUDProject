@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Add Cruddy Tea</title>
+<title>Update ${product.name}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -44,44 +44,66 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link" href="browse.do">Inventory</a> <a
-						class="nav-link active" href="addProduct.do">Add Tea</a>
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
+						href="browse.do">Inventory</a> <a class="nav-link"
+						href="addProduct.do">Add Tea</a> <a class="nav-link active"
+						href="updateProduct.do">Update ${product.name}</a>
 				</nav>
 			</div>
 		</header>
-
 		<main role="main" class="inner cover">
-		<form action="addProduct.do" modelAttribute="product" method="POST">
+		<form action="updateProduct.do" modelAttribute="product" method="POST">
+			<h4>Update:<br> ${product.name }</h4>
 			<table>
+				<tr>
+					<td></td>
+					<td><img alt="" src="${product.img}" height="250" width="250"></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name="id" size="30" placeholder="#"
+						value="${product.id }" /></td>
+				</tr>
 				<tr>
 					<td><strong>Name :</strong></td>
 					<td><input type="text" name="name" size="30"
-						placeholder="Chocolate Chai Mocha Mate" /></td>
+						placeholder="Chocolate Chai Mocha Mate" value="${product.name}" /></td>
 				</tr>
 				<tr>
-
 					<td><strong>Description :</strong></td>
 					<td><input type="text" name="description" size="30"
-						placeholder="Some very wordy thing you just made up." /></td>
+						placeholder="Some description....." value="${product.description}" /></td>
 				</tr>
 				<tr>
-					<td><strong>Price :</strong></td>
+					<td><strong>Price ($):</strong></td>
 					<td><input type="text" name="price" size="30"
-						placeholder="9.99" /></td>
+						placeholder="9.99" value="${product.price}" /></td>
 				</tr>
 				<tr>
-					<td><strong>Quantity :</strong></td>
-					<td><input type="text" name="qty" size="30" placeholder="1-25" /></td>
+					<td><strong>Quantity in Stock(kg) :</strong></td>
+					<td><input type="text" name="qty" size="30" placeholder="1-25"
+						value="${product.qty}" /></td>
 				</tr>
 				<tr>
 					<td><strong>Image URL :</strong></td>
 					<td><input type="text" name="img" size="30"
-						placeholder="http://../" /></td>
+						placeholder="http://../" value="${product.img}" /></td>
 				</tr>
+<!-- 				<tr>
+					<td><strong>Categories :</strong></td>
+					<td><input type="text" name="categories" size="30"
+						placeholder="http://../"
+						value="" /></td>
+				</tr>
+				<tr>
+					<td><strong>Suppliers :</strong></td>
+					<td><input type="text" name="suppliers" size="30"
+						placeholder="" /></td>
+				</tr> -->
 			</table>
-			<input type="submit" value="Add Tea" class="btn btn-outline-success" />
+			<input type="submit" value="Update Tea"
+				class="btn btn-outline-success" />
 		</form>
+		<br>
 		</main>
 
 		<footer class="mastfoot mt-auto">
@@ -90,9 +112,11 @@
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
+			</div>
+			<div class="inner">
 				<form class="nav-link" action="getProduct.do" method="GET">
 					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" class="btn btn-outline-success"/>
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>
 		</footer>

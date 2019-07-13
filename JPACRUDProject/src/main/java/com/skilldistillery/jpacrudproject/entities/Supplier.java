@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Supplier {
 
@@ -28,11 +30,13 @@ public class Supplier {
 
 	@Column(name = "create_date")
 	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	private Date dateAcquired;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-	@JoinTable(name = "tea_has_supplier", joinColumns = { @JoinColumn(name = "supplier_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "tea_id") })
+	@JoinTable(name = "tea_has_supplier",
+	joinColumns = { @JoinColumn(name = "supplier_id") },
+	inverseJoinColumns = { @JoinColumn(name = "tea_id") })
 	private List<Tea> teas;
 
 	public int getId() {
