@@ -45,9 +45,12 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
-						href="viewTeas.do">Teas</a><!--  <a class="nav-link"
-						href="viewCategories.do">Categories</a> --><!-- <a class="nav-link"
-						href="addTea.do">Add Tea</a> --><a class="nav-link active" href="#">${tea.name}</a>
+						href="viewTeas.do">Loose Leaf</a>
+					<!--  <a class="nav-link"
+						href="viewCategories.do">Categories</a> -->
+					<!-- <a class="nav-link"
+						href="addTea.do">Add Tea</a> -->
+					<a class="nav-link active" href="#">${tea.name}</a>
 				</nav>
 			</div>
 			<c:if test="${ supplier }">
@@ -64,10 +67,13 @@
 		<main role="main" class="inner cover"> <c:if
 			test="${! empty tea }">
 			<c:if test="${ updated }">
-				<h2>Updated</h2>
+				<h2>Success! Updated ID# ${tea.id }</h2>
+			</c:if>
+			<c:if test="${ added }">
+				<h2>Success! Added ID# ${tea.id }</h2>
 			</c:if>
 			<c:if test="${ deleted }">
-				<h2>Deleted</h2>
+				<h2>Success! Deleted ID# ${tea.id }</h2>
 			</c:if>
 			<h2>${tea.name}</h2>
 			<p>Price: $${tea.price}</p>

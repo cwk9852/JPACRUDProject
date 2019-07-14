@@ -36,40 +36,41 @@ public class TeaController {
 	public String viewTeas(Model model) {
 		List<Tea> teas = dao.findTeas();
 		model.addAttribute("teas", teas);
-		return "WEB-INF/tea/viewAllTea.jsp";
+		return "WEB-INF/loose-leaf/viewTeas.jsp";
 	}
 
 	@RequestMapping(path = "viewCategories.do")
 	public String viewCategories(Model model) {
 		List<Category> categories = dao.findCategories();
 		model.addAttribute("categories", categories);
-		return "WEB-INF/tea/viewTea.jsp";
+		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 
 	@RequestMapping(path = "addTea.do")
 	public String addTea() {
-		return "WEB-INF/tea/addTea.jsp";
+		return "WEB-INF/loose-leaf/addTea.jsp";
 	}
 
 	@RequestMapping(path = "addReview.do", params = "id", method = RequestMethod.GET)
 	public String addReview(Model model, @RequestParam("id") Integer id) {
 		Tea tea = dao.findTea(id);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/addReview.jsp";
+		return "WEB-INF/loose-leaf/addReview.jsp";
 	}
 
 	@RequestMapping(path = "addTea.do", method = RequestMethod.POST)
 	public String addTea(Model model, Tea tea) {
 		tea = dao.createTea(tea);
+		model.addAttribute("added", true);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/viewTea.jsp";
+		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 
 	@RequestMapping(path = "updateTea.do", params = "id", method = RequestMethod.GET)
 	public String updateTea(Model model, @RequestParam("id") Integer id) {
 		Tea tea = dao.findTea(id);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/updateTea.jsp";
+		return "WEB-INF/loose-leaf/updateTea.jsp";
 	}
 
 	@RequestMapping(path = "updateTea.do", method = RequestMethod.POST)
@@ -78,7 +79,7 @@ public class TeaController {
 		tea = dao.findTea(tea.getId());
 		model.addAttribute("updated", updated);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/viewTea.jsp";
+		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 
 	@RequestMapping(path = "deleteTea.do", params = "id")
@@ -87,14 +88,14 @@ public class TeaController {
 		Boolean deleted = dao.deleteTea(id);
 		model.addAttribute("deleted", deleted);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/viewTea.jsp";
+		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 
 	@RequestMapping(path = "findTea.do", params = "id")
 	public String findTea(Model model, @RequestParam("id") Integer id) {
 		Tea tea = dao.findTea(id);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/viewTea.jsp";
+		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 
 	@RequestMapping(path = "addReview.do", method = RequestMethod.POST)
@@ -104,6 +105,6 @@ public class TeaController {
 		tea.addReview(review);
 		model.addAttribute("reviewed", true);
 		model.addAttribute("tea", tea);
-		return "WEB-INF/tea/viewTea.jsp";
+		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 }

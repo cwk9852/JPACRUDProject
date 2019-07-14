@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Review ${tea.name }</title>
+<title>Update ${tea.name}</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -44,19 +44,20 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a class="nav-link "
-						href="viewTeas.do">Teas</a>
+					<a class="nav-link" href="home.do">Home</a> <a
+						class="nav-link" href="viewTeas.do">Loose Leaf</a> <a class="nav-link"
+						href="viewCategories.do">Categories</a>
 					<!-- <a class="nav-link"
-						href="viewCategories.do">Categories</a><a class="nav-link"
 						href="addTea.do">Add Tea</a> -->
-					<a class="nav-link" href="addReview.do">Add Review ${tea.name }</a>
+					<a class="nav-link active"
+						href="updateTea.do">Update ${tea.name}</a>
 				</nav>
 			</div>
 		</header>
 		<main role="main" class="inner cover">
-		<form action="addReview.do" modelAttribute="review" method="POST">
+		<form action="updateTea.do" modelAttribute="tea" method="POST">
 			<h4>
-				Add User Tea Review:<br> ${tea.name }
+				Update:<br> ${tea.name }
 			</h4>
 			<table>
 				<tr>
@@ -64,38 +65,49 @@
 					<td><img alt="" src="${tea.img}" height="250" width="250"></td>
 				</tr>
 				<tr>
-					<td><strong>Title :</strong></td>
-					<td><input type="text" name="title" size="30"
-						placeholder="Outstanding Tea!" /></td>
-				</tr>
-				<tr>
-					<td><strong>Review :</strong></td>
-					<td><input type="text" name="review" size="30"
-						placeholder="It was the best of teas!" /></td>
-				</tr>
-				<tr>
-					<td><strong></strong></td>
-					<td><input type="hidden" name="user.id" size="30" value="1" /></td>
-				</tr>
-				<tr>
-					<td><strong></strong></td>
-					<td><input type=hidden name="tea.id" size="30"
+					<td><input type="hidden" name="id" size="30" placeholder="#"
 						value="${tea.id }" /></td>
 				</tr>
 				<tr>
-					<td><strong>Rating</strong></td>
-					<td><input type="text" name="rating" size="30" placeholder="5" /></td>
+					<td><strong>Name :</strong></td>
+					<td><input type="text" name="name" size="30"
+						placeholder="Chocolate Chai Mocha Mate" value="${tea.name}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Description :</strong></td>
+					<td><input type="text" name="description" size="30"
+						placeholder="Some description....." value="${tea.description}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Price ($):</strong></td>
+					<td><input type="text" name="price" size="30"
+						placeholder="9.99" value="${tea.price}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Quantity in Stock(kg) :</strong></td>
+					<td><input type="text" name="qty" size="30" placeholder="1-25"
+						value="${tea.qty}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Image URL :</strong></td>
+					<td><input type="text" name="img" size="30"
+						placeholder="http://../" value="${tea.img}" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Submit" class="btn btn-outline-success" />
+			<input type="submit" value="Update Tea"
+				class="btn btn-outline-success" />
 		</form>
+		<br>
 		</main>
+
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
+			</div>
+			<div class="inner">
 				<form class="nav-link" action="findTea.do" method="GET">
 					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
 						type="submit" value="Find Tea" class="btn btn-outline-success" />
