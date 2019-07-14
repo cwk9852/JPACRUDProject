@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpacrudproject.entities.Category;
 import com.skilldistillery.jpacrudproject.entities.Review;
-import com.skilldistillery.jpacrudproject.entities.Supplier;
 import com.skilldistillery.jpacrudproject.entities.Tea;
 
 @Transactional
@@ -21,7 +20,7 @@ public class TeaDAOImpl implements TeaDAO {
 	private EntityManager em;
 
 	@Override
-	public Tea findTeaById(int id) {
+	public Tea findTea(int id) {
 		return em.find(Tea.class, id);
 	}
 
@@ -31,10 +30,25 @@ public class TeaDAOImpl implements TeaDAO {
 		List<Tea> teas = em.createQuery(query, Tea.class).getResultList();
 		return teas;
 	}
+
 	public List<Category> findCategories() {
 		String query = "SELECT cat FROM Category cat";
 		List<Category> categories = em.createQuery(query, Category.class).getResultList();
 		return categories;
+	}
+	
+	@Override
+	public List<Tea> findTeaByKeyword(String keyword) {
+		String query = "SELECT tea FROM Tea tea WHERE tea.description = :keyword";
+		List<Tea> teas = em.createQuery(query, Tea.class).setParameter("keyword", "%" + keyword + "%" ).getResultList();
+		return teas;
+	}
+
+	@Override
+	public Category findCategoryByName(String category) {
+		String query = "SELECT category FROM Category category WHERE category.name = :category";
+		Category cat = em.createQuery(query, Category.class).setParameter("category", category).getSingleResult();
+		return cat;
 	}
 
 	@Override
@@ -45,6 +59,7 @@ public class TeaDAOImpl implements TeaDAO {
 		updated.setPrice(tea.getPrice());
 		updated.setQty(tea.getQty());
 		updated.setImg(tea.getImg());
+		updated.setReviews(tea.getReviews());
 		em.persist(updated);
 		return true;
 	}
@@ -66,21 +81,9 @@ public class TeaDAOImpl implements TeaDAO {
 	}
 
 	@Override
-	public Supplier createSupplier(Supplier supplier) {
-		em.persist(supplier);
-		return supplier;
-	}
-
-	@Override
 	public Review createReview(Review review) {
 		em.persist(review);
 		return review;
-	}
-
-	@Override
-	public Category createCategory(Category category) {
-		em.persist(category);
-		return category;
 	}
 
 }

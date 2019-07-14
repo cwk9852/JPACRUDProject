@@ -48,7 +48,7 @@ class SupplierTest {
 	@Test
 	void test_Supplier_has_Teas() {
 		Supplier supplier = em.find(Supplier.class, 1);
-		assertEquals(1, supplier.getTeas().size());
+		assertEquals(2, supplier.getTeas().size());
 	}
 
 }

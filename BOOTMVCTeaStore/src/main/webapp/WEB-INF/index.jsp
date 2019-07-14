@@ -45,15 +45,12 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="home.do">Home</a> <a
-						class="nav-link" href="viewAllTea.do">Teas</a>
-						<a class="nav-link" href="viewCategories.do">Categories</a> <a
-						class="nav-link" href="addTea.do">Add Tea</a><a class="nav-link"
-						href="addSupplier.do">Add Supplier</a> <a class="nav-link"
-						href="addCategory.do">Add Category</a>
+						class="nav-link" href="viewTeas.do">Teas</a> <a class="nav-link"
+						href="viewCategories.do">Categories</a><a class="nav-link"
+						href="addTea.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>
-
 		<main role="main" class="inner cover">
 		<h3 class="cover-heading">
 			<em>Tea Spotlight</em>

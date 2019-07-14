@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Add Cruddy Tea Category</title>
+<title>Add Cruddy Tea Supplier</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -44,34 +44,49 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
-						href="viewAllTea.do">View Teas</a><a class="nav-link"
-						href="addTea.do">Add Tea</a> <a class="nav-link active"
-						href="addCategory.do">Add Category</a>
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link "
+						href="viewTeas.do">Teas</a> <a class="nav-link"
+						href="viewCategories.do">Categories</a><a class="nav-link"
+						href="addTea.do">Add Tea</a><a class="nav-link"
+						href="addReview.do">Add Review</a>
 				</nav>
 			</div>
+			>
 		</header>
-
 		<main role="main" class="inner cover">
-		<form action="addCategory.do" modelAttribute="category" method="POST">
-			<h4>Add Cruddy Tea Category</h4>
+		<form action="addReview.do" modelAttribute="review" method="POST">
+			<h4>
+				Review:<br> ${tea.name }
+			</h4>
 			<table>
 				<tr>
-					<td><strong>Name :</strong></td>
-					<td><input type="text" name="name" size="30"
-						placeholder="Green, White, Black" /></td>
+					<td></td>
+					<td><img alt="" src="${tea.img}" height="250" width="250"></td>
 				</tr>
 				<tr>
-					<td><strong>Description :</strong></td>
-					<td><input type="text" name="description" size="30"
-						placeholder="What is this category about" /></td>
+					<td><input type="hidden" name="id" size="30" placeholder="#"
+						value="${tea.id }" /></td>
+				</tr>
+				<tr>
+					<td><strong>Title :</strong></td>
+					<td><input type="text" name="title" size="30"
+						placeholder="Outstanding Tea!" /></td>
+				</tr>
+				<tr>
+					<td><strong>Review :</strong></td>
+					<td><input type="text" name="review" size="30"
+						placeholder="It was the best of teas!" /></td>
+				</tr>
+				<tr>
+					<td><strong>Rating 1-5</strong></td>
+					<td><input type="text" name="price" size="30"
+						placeholder="9.99" value="${tea.price}" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Add Category"
+			<input type="submit" value="Review Tea"
 				class="btn btn-outline-success" />
 		</form>
 		</main>
-
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>

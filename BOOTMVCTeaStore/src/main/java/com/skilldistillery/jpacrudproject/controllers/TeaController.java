@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.jpacrudproject.data.TeaDAO;
 import com.skilldistillery.jpacrudproject.entities.Category;
-import com.skilldistillery.jpacrudproject.entities.Supplier;
+import com.skilldistillery.jpacrudproject.entities.Review;
 import com.skilldistillery.jpacrudproject.entities.Tea;
 
 @Controller
@@ -20,6 +20,11 @@ public class TeaController {
 	@Autowired
 	private TeaDAO dao;
 
+	@RequestMapping(path = "viewTeaByCategory.do")
+	public String viewTeaByCategory(int id, Model model) {
+		return "WEB-INF/tea/viewTeaByCategory.jsp";
+	}
+
 	@RequestMapping(value = { "/", "index", "home.do" })
 	public String index(Model model) {
 		List<Tea> teas = dao.findTeas();
@@ -27,8 +32,8 @@ public class TeaController {
 		return "WEB-INF/index.jsp";
 	}
 
-	@RequestMapping(path = "viewAllTea.do")
-	public String viewAllTea(Model model) {
+	@RequestMapping(path = "viewTeas.do")
+	public String viewTeas(Model model) {
 		List<Tea> teas = dao.findTeas();
 		model.addAttribute("teas", teas);
 		return "WEB-INF/tea/viewAllTea.jsp";
@@ -46,6 +51,11 @@ public class TeaController {
 		return "WEB-INF/tea/addTea.jsp";
 	}
 
+	@RequestMapping(path = "addReview.do")
+	public String addReview() {
+		return "WEB-INF/tea/addReview.jsp";
+	}
+
 	@RequestMapping(path = "addTea.do", method = RequestMethod.POST)
 	public String addTea(Model model, Tea tea) {
 		tea = dao.createTea(tea);
@@ -53,33 +63,9 @@ public class TeaController {
 		return "WEB-INF/tea/viewTea.jsp";
 	}
 
-	@RequestMapping(path = "addSupplier.do")
-	public String addSupplier() {
-		return "WEB-INF/tea/addSupplier.jsp";
-	}
-
-	@RequestMapping(path = "addSupplier.do", method = RequestMethod.POST)
-	public String addSupplier(Model model, Supplier supplier) {
-		supplier = dao.createSupplier(supplier);
-		model.addAttribute("supplier", supplier);
-		return "WEB-INF/tea/viewTea.jsp";
-	}
-
-	@RequestMapping(path = "addCategory.do")
-	public String addCategory() {
-		return "WEB-INF/tea/addCategory.jsp";
-	}
-
-	@RequestMapping(path = "addCategory.do", method = RequestMethod.POST)
-	public String addCategory(Model model, Category category) {
-		category = dao.createCategory(category);
-		model.addAttribute("category", category);
-		return "WEB-INF/tea/viewTea.jsp";
-	}
-
 	@RequestMapping(path = "updateTea.do", params = "id", method = RequestMethod.GET)
 	public String updateTea(Model model, @RequestParam("id") Integer id) {
-		Tea tea = dao.findTeaById(id);
+		Tea tea = dao.findTea(id);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/updateTea.jsp";
 	}
@@ -87,7 +73,7 @@ public class TeaController {
 	@RequestMapping(path = "updateTea.do", method = RequestMethod.POST)
 	public String updateTea(Model model, Tea tea) {
 		Boolean updated = dao.updateTea(tea);
-		tea = dao.findTeaById(tea.getId());
+		tea = dao.findTea(tea.getId());
 		model.addAttribute("updated", updated);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/viewTea.jsp";
@@ -95,7 +81,7 @@ public class TeaController {
 
 	@RequestMapping(path = "deleteTea.do", params = "id")
 	public String deleteTea(Model model, @RequestParam("id") Integer id) {
-		Tea tea = dao.findTeaById(id);
+		Tea tea = dao.findTea(id);
 		Boolean deleted = dao.deleteTea(id);
 		model.addAttribute("deleted", deleted);
 		model.addAttribute("tea", tea);
@@ -104,9 +90,25 @@ public class TeaController {
 
 	@RequestMapping(path = "findTea.do", params = "id")
 	public String findTea(Model model, @RequestParam("id") Integer id) {
-		Tea tea = dao.findTeaById(id);
+		Tea tea = dao.findTea(id);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/viewTea.jsp";
 	}
 
+	@RequestMapping(path = "addReview.do", params = "id", method = RequestMethod.POST)
+	public String addReviewToTea(Model model, @RequestParam("id") Integer id, Review review) {
+		System.out.println(review);
+		Review newReview = new Review();
+		newReview.setRating(review.getRating());
+		newReview.setReview(review.getReview());
+		newReview.setAuthor(review.getAuthor());
+		newReview.setTea(review.getTea());
+		newReview.setTitle(review.getTitle());
+		Tea tea = dao.findTea(id);
+		newReview = dao.createReview(newReview);
+		tea.addReview(newReview);
+		dao.updateTea(tea);
+		model.addAttribute("tea", tea);
+		return "WEB-INF/tea/viewTea.jsp";
+	}
 }

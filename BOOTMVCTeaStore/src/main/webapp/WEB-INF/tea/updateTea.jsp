@@ -44,16 +44,19 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
-						href="viewAllTea.do">View Teas</a> <a class="nav-link"
-						href="addTea.do">Add Tea</a> <a class="nav-link active"
+					<a class="nav-link" href="home.do">Home</a> <a
+						class="nav-link" href="viewTeas.do">Teas</a> <a class="nav-link"
+						href="viewCategories.do">Categories</a><a class="nav-link"
+						href="addTea.do">Add Tea</a><a class="nav-link active"
 						href="updateTea.do">Update ${tea.name}</a>
 				</nav>
 			</div>
 		</header>
 		<main role="main" class="inner cover">
 		<form action="updateTea.do" modelAttribute="tea" method="POST">
-			<h4>Update:<br> ${tea.name }</h4>
+			<h4>
+				Update:<br> ${tea.name }
+			</h4>
 			<table>
 				<tr>
 					<td></td>
@@ -88,17 +91,6 @@
 					<td><input type="text" name="img" size="30"
 						placeholder="http://../" value="${tea.img}" /></td>
 				</tr>
-<!-- 			<tr>
-					<td><strong>Categories :</strong></td>
-					<td><input type="text" name="categories" size="30"
-						placeholder="http://../"
-						value="" /></td>
-				</tr>
-				<tr>
-					<td><strong>Suppliers :</strong></td>
-					<td><input type="text" name="suppliers" size="30"
-						placeholder="" /></td>
-				</tr> -->
 			</table>
 			<input type="submit" value="Update Tea"
 				class="btn btn-outline-success" />

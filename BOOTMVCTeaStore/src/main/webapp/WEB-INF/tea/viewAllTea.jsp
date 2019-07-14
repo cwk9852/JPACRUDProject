@@ -45,7 +45,8 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link active" href="viewAllTea.do">View Teas</a> <a
+						class="nav-link active" href="viewTeas.do">Teas</a> <a
+						class="nav-link" href="viewCategories.do">Categories</a><a
 						class="nav-link" href="addTea.do">Add Tea</a>
 				</nav>
 			</div>
@@ -55,7 +56,7 @@
 			<c:when test="${! empty teas}">
 				<table>
 					<tr>
-						<th scope="col">tea ID</th>
+						<th scope="col">Tea ID</th>
 						<th scope="col">Name</th>
 						<th scope="col"></th>
 						<th scope="col">Description</th>
