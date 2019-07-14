@@ -45,8 +45,8 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
-						href="viewTeas.do">Teas</a> <a class="nav-link"
-						href="viewCategories.do">Categories</a><a class="nav-link active"
+						href="viewTeas.do">Teas</a><!--  <a class="nav-link"
+						href="viewCategories.do">Categories</a>--><a class="nav-link active"
 						href="addTea.do">Add Tea</a>
 				</nav>
 			</div>

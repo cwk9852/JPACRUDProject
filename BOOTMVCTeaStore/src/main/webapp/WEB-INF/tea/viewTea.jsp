@@ -44,10 +44,10 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link" href="viewTeas.do">Teas</a> <a class="nav-link"
-						href="viewCategories.do">Categories</a><a class="nav-link"
-						href="addTea.do">Add Tea</a><a class="nav-link active" href="#">${tea.name}</a>
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
+						href="viewTeas.do">Teas</a><!--  <a class="nav-link"
+						href="viewCategories.do">Categories</a> --><!-- <a class="nav-link"
+						href="addTea.do">Add Tea</a> --><a class="nav-link active" href="#">${tea.name}</a>
 				</nav>
 			</div>
 			<c:if test="${ supplier }">
@@ -96,7 +96,7 @@
 			<c:if test="${! deleted}">
 				<form action="addReview.do" method="GET">
 					<input type="hidden" value="${tea.id }" name="id" /> <input
-						type="submit" value="Update Tea" class="btn btn-outline-warning" />
+						type="submit" value="Review Tea" class="btn btn-outline-success" />
 				</form>
 				<form action="updateTea.do" method="GET">
 					<input type="hidden" value="${tea.id }" name="id" /> <input
@@ -104,7 +104,7 @@
 				</form>
 				<form action="deleteTea.do" method="GET">
 					<input type="hidden" value="${tea.id }" name="id" /> <input
-						type="submit" value="Delete" class="btn btn-outline-danger" />
+						type="submit" value="Delete Tea" class="btn btn-outline-danger" />
 				</form>
 			</c:if>
 		</c:if> <c:if test="${! empty categories }">

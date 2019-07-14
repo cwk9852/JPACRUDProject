@@ -99,21 +99,10 @@ public class TeaController {
 
 	@RequestMapping(path = "addReview.do", method = RequestMethod.POST)
 	public String addReviewToTea(Model model, Review review) {
-		System.out.println(review);
-		Review newReview = new Review();
-		newReview.setRating(review.getRating());
-		newReview.setReview(review.getReview());
-		newReview.setUser(review.getUser());
-		newReview.setTea(review.getTea());
-		newReview.setTitle(review.getTitle());
-		
-		newReview = dao.createReview(newReview);
-		
 		Tea tea = dao.findTea(review.getTea().getId());
-		System.out.println(tea);
-		
-		tea.addReview(newReview);
-		dao.updateTea(tea);
+		review = dao.createReview(review);
+		tea.addReview(review);
+		model.addAttribute("reviewed", true);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/viewTea.jsp";
 	}

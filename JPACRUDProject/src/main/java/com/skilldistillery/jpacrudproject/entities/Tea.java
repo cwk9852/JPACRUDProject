@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -42,6 +43,11 @@ public class Tea {
 	@Temporal(TemporalType.TIMESTAMP)
 	@UpdateTimestamp
 	private Date updateTime;
+	
+	@Column(name = "create_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date createDate;
 
 	@OneToMany(mappedBy="tea")
 	private Set<Review> reviews;
@@ -266,5 +272,13 @@ public class Tea {
 
 	public void setSuppliers(Set<Supplier> suppliers) {
 		this.suppliers = suppliers;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 }

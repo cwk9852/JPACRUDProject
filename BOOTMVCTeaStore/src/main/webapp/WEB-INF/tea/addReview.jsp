@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="generator" content="Jekyll v3.8.5">
-<title>Add Cruddy Tea Supplier</title>
+<title>Review ${tea.name }</title>
 
 <link
 	href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"
@@ -45,23 +45,24 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link "
-						href="viewTeas.do">Teas</a> <a class="nav-link"
+						href="viewTeas.do">Teas</a>
+					<!-- <a class="nav-link"
 						href="viewCategories.do">Categories</a><a class="nav-link"
-						href="addTea.do">Add Tea</a><a class="nav-link"
-						href="addReview.do">Add Review</a>
+						href="addTea.do">Add Tea</a> -->
+					<a class="nav-link" href="addReview.do">Add Review ${tea.name }</a>
 				</nav>
 			</div>
 		</header>
 		<main role="main" class="inner cover">
 		<form action="addReview.do" modelAttribute="review" method="POST">
 			<h4>
-				Review:<br> ${tea.name }
+				Add User Tea Review:<br> ${tea.name }
 			</h4>
 			<table>
 				<tr>
 					<td></td>
 					<td><img alt="" src="${tea.img}" height="250" width="250"></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td><strong>Title :</strong></td>
 					<td><input type="text" name="title" size="30"
@@ -74,8 +75,7 @@
 				</tr>
 				<tr>
 					<td><strong></strong></td>
-					<td><input type="hidden" name="user.id" size="30"
-						value="1" /></td>
+					<td><input type="hidden" name="user.id" size="30" value="1" /></td>
 				</tr>
 				<tr>
 					<td><strong></strong></td>
@@ -84,12 +84,10 @@
 				</tr>
 				<tr>
 					<td><strong>Rating</strong></td>
-					<td><input type="text" name="rating" size="30"
-						placeholder="5"  /></td>
+					<td><input type="text" name="rating" size="30" placeholder="5" /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Submit"
-				class="btn btn-outline-success" />
+			<input type="submit" value="Submit" class="btn btn-outline-success" />
 		</form>
 		</main>
 		<footer class="mastfoot mt-auto">

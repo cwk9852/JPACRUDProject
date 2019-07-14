@@ -46,8 +46,10 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a
 						class="nav-link" href="viewTeas.do">Teas</a> <a class="nav-link"
-						href="viewCategories.do">Categories</a><a class="nav-link"
-						href="addTea.do">Add Tea</a><a class="nav-link active"
+						href="viewCategories.do">Categories</a>
+					<!-- <a class="nav-link"
+						href="addTea.do">Add Tea</a> -->
+					<a class="nav-link active"
 						href="updateTea.do">Update ${tea.name}</a>
 				</nav>
 			</div>
