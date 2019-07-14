@@ -39,11 +39,21 @@ class ReviewTest {
 	@Test
 	void test_Review_mapping() {
 		Review review = em.find(Review.class, 1);
-		assertEquals(1, review.getAuthor().getId());
+		assertEquals("This was cruddy tea", review.getReview());
 		assertEquals(1, review.getTea().getId());
 		assertEquals("A Review", review.getTitle());
-		assertEquals("This was cruddy tea", review.getReview());
 		assertEquals(1, review.getRating());
+	}
+	@Test
+	void test_Review_has_User() {
+		Review review = em.find(Review.class, 1);
+		assertEquals(1, review.getUser().getId());
+	}
+	@Test
+	void test_Review_has_Tea() {
+		Review review = em.find(Review.class, 1);
+		assertEquals(1, review.getTea().getId());
+		assertEquals("A Review", review.getTitle());
 	}
 	
 }

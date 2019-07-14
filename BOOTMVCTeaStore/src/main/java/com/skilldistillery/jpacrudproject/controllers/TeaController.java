@@ -51,8 +51,10 @@ public class TeaController {
 		return "WEB-INF/tea/addTea.jsp";
 	}
 
-	@RequestMapping(path = "addReview.do")
-	public String addReview() {
+	@RequestMapping(path = "addReview.do", params = "id", method = RequestMethod.GET)
+	public String addReview(Model model, @RequestParam("id") Integer id) {
+		Tea tea = dao.findTea(id);
+		model.addAttribute("tea", tea);
 		return "WEB-INF/tea/addReview.jsp";
 	}
 
@@ -95,17 +97,21 @@ public class TeaController {
 		return "WEB-INF/tea/viewTea.jsp";
 	}
 
-	@RequestMapping(path = "addReview.do", params = "id", method = RequestMethod.POST)
-	public String addReviewToTea(Model model, @RequestParam("id") Integer id, Review review) {
+	@RequestMapping(path = "addReview.do", method = RequestMethod.POST)
+	public String addReviewToTea(Model model, Review review) {
 		System.out.println(review);
 		Review newReview = new Review();
 		newReview.setRating(review.getRating());
 		newReview.setReview(review.getReview());
-		newReview.setAuthor(review.getAuthor());
+		newReview.setUser(review.getUser());
 		newReview.setTea(review.getTea());
 		newReview.setTitle(review.getTitle());
-		Tea tea = dao.findTea(id);
+		
 		newReview = dao.createReview(newReview);
+		
+		Tea tea = dao.findTea(review.getTea().getId());
+		System.out.println(tea);
+		
 		tea.addReview(newReview);
 		dao.updateTea(tea);
 		model.addAttribute("tea", tea);

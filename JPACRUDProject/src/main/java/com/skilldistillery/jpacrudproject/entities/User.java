@@ -28,7 +28,7 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="user")
 	private Set<Review> reviews;
 
 	public int getId() {
@@ -105,7 +105,7 @@ public class User {
 			reviews = new HashSet<>();
 		if (!reviews.contains(review)) {
 			reviews.add(review);
-			review.setAuthor(this);
+			review.setUser(this);
 			;
 		}
 	}

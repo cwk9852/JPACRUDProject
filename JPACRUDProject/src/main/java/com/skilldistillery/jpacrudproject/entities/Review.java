@@ -25,7 +25,7 @@ public class Review {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User author;
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "tea_id")
@@ -65,15 +65,7 @@ public class Review {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
+	
 	public Tea getTea() {
 		return tea;
 	}
@@ -88,14 +80,6 @@ public class Review {
 
 	public void setDateAuthored(Date dateAuthored) {
 		this.dateAuthored = dateAuthored;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	@Override
@@ -118,6 +102,22 @@ public class Review {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

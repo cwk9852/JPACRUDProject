@@ -51,7 +51,6 @@
 						href="addReview.do">Add Review</a>
 				</nav>
 			</div>
-			>
 		</header>
 		<main role="main" class="inner cover">
 		<form action="addReview.do" modelAttribute="review" method="POST">
@@ -62,11 +61,7 @@
 				<tr>
 					<td></td>
 					<td><img alt="" src="${tea.img}" height="250" width="250"></td>
-				</tr>
-				<tr>
-					<td><input type="hidden" name="id" size="30" placeholder="#"
-						value="${tea.id }" /></td>
-				</tr>
+				</tr>	
 				<tr>
 					<td><strong>Title :</strong></td>
 					<td><input type="text" name="title" size="30"
@@ -78,12 +73,22 @@
 						placeholder="It was the best of teas!" /></td>
 				</tr>
 				<tr>
-					<td><strong>Rating 1-5</strong></td>
-					<td><input type="text" name="price" size="30"
-						placeholder="9.99" value="${tea.price}" /></td>
+					<td><strong></strong></td>
+					<td><input type="hidden" name="user.id" size="30"
+						value="1" /></td>
+				</tr>
+				<tr>
+					<td><strong></strong></td>
+					<td><input type=hidden name="tea.id" size="30"
+						value="${tea.id }" /></td>
+				</tr>
+				<tr>
+					<td><strong>Rating</strong></td>
+					<td><input type="text" name="rating" size="30"
+						placeholder="5"  /></td>
 				</tr>
 			</table>
-			<input type="submit" value="Review Tea"
+			<input type="submit" value="Submit"
 				class="btn btn-outline-success" />
 		</form>
 		</main>
