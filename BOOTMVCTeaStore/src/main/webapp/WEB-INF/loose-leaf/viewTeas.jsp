@@ -48,8 +48,7 @@
 						class="nav-link active" href="viewTeas.do">Loose Leaf</a>
 					<!-- <a
 						class="nav-link" href="viewCategories.do">Categories</a> -->
-					<a
-						class="nav-link" href="addTea.do">Add Tea</a>
+					<a class="nav-link" href="addTea.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>

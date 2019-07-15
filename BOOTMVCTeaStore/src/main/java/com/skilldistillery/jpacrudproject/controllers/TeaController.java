@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.skilldistillery.jpacrudproject.data.TeaDAO;
 import com.skilldistillery.jpacrudproject.entities.Category;
 import com.skilldistillery.jpacrudproject.entities.Review;
+import com.skilldistillery.jpacrudproject.entities.Supplier;
 import com.skilldistillery.jpacrudproject.entities.Tea;
 
 @Controller
@@ -46,8 +47,13 @@ public class TeaController {
 		return "WEB-INF/loose-leaf/viewTea.jsp";
 	}
 
-	@RequestMapping(path = "addTea.do")
-	public String addTea() {
+	@RequestMapping(path = "addTea.do", method = RequestMethod.GET)
+	public String addTea(Model model) {
+		List<Category> categories = dao.findCategories();
+		List<Supplier> suppliers = dao.findSuppliers();
+		model.addAttribute("categories", categories);
+		model.addAttribute("suppliers", suppliers);
+		model.addAttribute("tea", new Tea());
 		return "WEB-INF/loose-leaf/addTea.jsp";
 	}
 
@@ -59,8 +65,14 @@ public class TeaController {
 	}
 
 	@RequestMapping(path = "addTea.do", method = RequestMethod.POST)
-	public String addTea(Model model, Tea tea) {
+	public String addTea(Model model, Tea tea, Integer[] categoryIds, Integer[] supplierIds) {
+//	public String addTea(Model model, Tea tea) {
+		System.out.println(tea);
+		System.out.println(categoryIds);
+		System.out.println(supplierIds);
 		tea = dao.createTea(tea);
+		dao.addCategoriesById(tea, categoryIds);
+		dao.addSuppliersById(tea, supplierIds);
 		model.addAttribute("added", true);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/loose-leaf/viewTea.jsp";
@@ -68,15 +80,21 @@ public class TeaController {
 
 	@RequestMapping(path = "updateTea.do", params = "id", method = RequestMethod.GET)
 	public String updateTea(Model model, @RequestParam("id") Integer id) {
+		List<Category> categories = dao.findCategories();
+		List<Supplier> suppliers = dao.findSuppliers();
 		Tea tea = dao.findTea(id);
+		model.addAttribute("categories", categories);
+		model.addAttribute("suppliers", suppliers);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/loose-leaf/updateTea.jsp";
 	}
 
 	@RequestMapping(path = "updateTea.do", method = RequestMethod.POST)
-	public String updateTea(Model model, Tea tea) {
+	public String updateTea(Model model, Tea tea, Integer[] categoryIds, Integer[] supplierIds) {
 		Boolean updated = dao.updateTea(tea);
 		tea = dao.findTea(tea.getId());
+		dao.addCategoriesById(tea, categoryIds);
+		dao.addSuppliersById(tea, supplierIds);
 		model.addAttribute("updated", updated);
 		model.addAttribute("tea", tea);
 		return "WEB-INF/loose-leaf/viewTea.jsp";

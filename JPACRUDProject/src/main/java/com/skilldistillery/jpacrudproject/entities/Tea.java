@@ -1,7 +1,9 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -55,12 +57,14 @@ public class Tea {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "tea_has_category", joinColumns = { @JoinColumn(name = "tea_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "category_id") })
-	private Set<Category> categories;
+//	private Set<Category> categories;
+	private List<Category> categories;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	@JoinTable(name = "tea_has_supplier", joinColumns = { @JoinColumn(name = "tea_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "supplier_id") })
-	private Set<Supplier> suppliers;
+//	private Set<Supplier> suppliers;
+	private List<Supplier> suppliers;
 
 	public Date getUpdateTime() {
 		return updateTime;
@@ -196,19 +200,19 @@ public class Tea {
 		this.reviews = reviews;
 	}
 
-	public Set<Category> getCategories() {
+	public List<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(HashSet<Category> categories) {
+	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
-	public Set<Supplier> getSuppliers() {
+	public List<Supplier> getSuppliers() {
 		return suppliers;
 	}
 
-	public void setSuppliers(HashSet<Supplier> suppliers) {
+	public void setSuppliers(List<Supplier> suppliers) {
 		this.suppliers = suppliers;
 	}
 
@@ -230,7 +234,7 @@ public class Tea {
 
 	public void addCategory(Category category) {
 		if (categories == null)
-			categories = new HashSet<>();
+			categories = new ArrayList<>();
 		if (!categories.contains(category)) {
 			categories.add(category);
 			category.addTea(this);
@@ -247,7 +251,7 @@ public class Tea {
 
 	public void addSupplier(Supplier supplier) {
 		if (suppliers == null)
-			suppliers = new HashSet<>();
+			suppliers = new ArrayList<>();
 		if (!suppliers.contains(supplier)) {
 			suppliers.add(supplier);
 			supplier.addTea(this);
@@ -266,19 +270,22 @@ public class Tea {
 		this.reviews = reviews;
 	}
 
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
-	}
-
-	public void setSuppliers(Set<Supplier> suppliers) {
-		this.suppliers = suppliers;
-	}
-
 	public Date getCreateDate() {
 		return createDate;
 	}
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Tea [id=").append(id).append(", name=").append(name).append(", description=")
+				.append(description).append(", price=").append(price).append(", qty=").append(qty).append(", img=")
+				.append(img).append(", updateTime=").append(updateTime).append(", createDate=").append(createDate)
+				.append(", reviews=").append(reviews).append(", categories=").append(categories).append(", suppliers=")
+				.append(suppliers).append("]");
+		return builder.toString();
 	}
 }

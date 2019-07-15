@@ -125,7 +125,7 @@
 					<tr>
 						<td>${c.id}</td>
 						<td>${c.name}</td>
-						<td>${c.description}</td>
+						<td>${c.shortDescription}</td>
 						<td>
 							<form action="findTeasByCategoryId.do" method="GET">
 								<input type="hidden" value="${c.id }" name="id" /> <input

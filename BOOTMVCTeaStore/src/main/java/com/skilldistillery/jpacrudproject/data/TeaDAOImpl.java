@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.jpacrudproject.entities.Category;
 import com.skilldistillery.jpacrudproject.entities.Review;
+import com.skilldistillery.jpacrudproject.entities.Supplier;
 import com.skilldistillery.jpacrudproject.entities.Tea;
 
 @Transactional
@@ -84,6 +85,30 @@ public class TeaDAOImpl implements TeaDAO {
 	public Review createReview(Review review) {
 		em.persist(review);
 		return review;
+	}
+
+	@Override
+	public List<Supplier> findSuppliers() {
+		String query = "SELECT sup FROM Supplier sup";
+		List<Supplier> suppliers = em.createQuery(query, Supplier.class).getResultList();
+		return suppliers;
+	}
+
+	@Override
+	public void addCategoriesById(Tea tea, Integer[] categoryIds) {
+		for (Integer cid : categoryIds) {
+			tea.addCategory(em.find(Category.class, cid));
+		}
+		
+	}
+
+	
+	@Override
+	public void addSuppliersById(Tea tea, Integer[] supplierIds) {
+		for (Integer cid : supplierIds) {
+			tea.addSupplier(em.find(Supplier.class, cid));
+		}
+		
 	}
 
 }

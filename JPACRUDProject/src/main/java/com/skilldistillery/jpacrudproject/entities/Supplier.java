@@ -112,4 +112,17 @@ public class Supplier {
 		}
 	}
 
+	public Supplier() {
+		super();
+	}
+
+	public Supplier(int id) {
+		super();
+		this.id = id;
+	}
+
+	public void setTeas(Set<Tea> teas) {
+		this.teas = teas;
+	}
+
 }

@@ -3,6 +3,7 @@ package com.skilldistillery.jpacrudproject.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,9 @@ public class Category {
 	private String name;
 
 	private String description;
+
+	@Column(name = "short_desc")
+	private String shortDescription;
 
 	@ManyToMany(mappedBy = "categories")
 	private Set<Tea> teas;
@@ -100,6 +104,23 @@ public class Category {
 			teas.remove(tea);
 			tea.removeCategory(this);
 		}
+	}
+
+	public Category() {
+		super();
+	}
+
+	public Category(int id) {
+		super();
+		this.id = id;
+	}
+
+	public String getShortDescription() {
+		return shortDescription;
+	}
+
+	public void setShortDescription(String shortDescription) {
+		this.shortDescription = shortDescription;
 	}
 
 }

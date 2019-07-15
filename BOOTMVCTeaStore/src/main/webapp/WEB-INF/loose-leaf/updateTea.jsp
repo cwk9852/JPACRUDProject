@@ -44,13 +44,13 @@
 			<div class="inner">
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link" href="viewTeas.do">Loose Leaf</a> <a class="nav-link"
+					<a class="nav-link" href="home.do">Home</a> <a class="nav-link"
+						href="viewTeas.do">Loose Leaf</a> <a class="nav-link"
 						href="viewCategories.do">Categories</a>
 					<!-- <a class="nav-link"
 						href="addTea.do">Add Tea</a> -->
-					<a class="nav-link active"
-						href="updateTea.do">Update ${tea.name}</a>
+					<a class="nav-link active" href="updateTea.do">Update
+						${tea.name}</a>
 				</nav>
 			</div>
 		</header>
@@ -92,6 +92,24 @@
 					<td><strong>Image URL :</strong></td>
 					<td><input type="text" name="img" size="30"
 						placeholder="http://../" value="${tea.img}" /></td>
+				</tr>
+				<tr>
+					<td><strong>Categories :</strong></td>
+					<td><select width="30" multiple name="categoryIds">
+							<c:forEach var="cat" items="${categories}">
+								<option value="${cat.id }">${cat.name }</option>
+							</c:forEach>
+					</select> <%-- <form:select width="30" multiple="true" path="categories">
+					  <form:options items="${categories}" itemValue="id" itemLabel="name" />
+					</form:select> --%></td>
+				</tr>
+				<tr>
+					<td><strong>Suppliers :</strong></td>
+					<td><select width="30" multiple name="supplierIds">
+							<c:forEach var="sup" items="${suppliers}">
+								<option value="${sup.id }">${sup.name }</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 			</table>
 			<input type="submit" value="Update Tea"

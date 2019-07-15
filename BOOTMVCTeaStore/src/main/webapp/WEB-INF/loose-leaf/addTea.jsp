@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,46 +54,57 @@
 		</header>
 
 		<main role="main" class="inner cover">
-		<form action="addTea.do" modelAttribute="tea" method="POST">
+		<form:form action="addTea.do" modelAttribute="tea" method="POST">
 			<h4>Add Cruddy Tea</h4>
 			<table>
 				<tr>
 					<td><strong>Name :</strong></td>
-					<td><input type="text" name="name" size="30"
+					<td><form:input type="text" name="name" size="30" path="name"
 						placeholder="Chocolate Chai Mocha Mate" /></td>
 				</tr>
 				<tr>
 					<td><strong>Description :</strong></td>
-					<td><input type="text" name="description" size="30"
+					<td><form:input type="text" name="description" size="30" path="description"
 						placeholder="Some very wordy thing you just made up." /></td>
 				</tr>
 				<tr>
 					<td><strong>Price :</strong></td>
-					<td><input type="text" name="price" size="30"
+					<td><form:input type="text" name="price" size="30" path="price"
 						placeholder="9.99" /></td>
 				</tr>
 				<tr>
 					<td><strong>Quantity :</strong></td>
-					<td><input type="text" name="qty" size="30" placeholder="1-25" /></td>
+					<td><form:input type="text" name="qty" size="30" placeholder="1-25" path="qty"/></td>
 				</tr>
 				<tr>
 					<td><strong>Image URL :</strong></td>
-					<td><input type="text" name="img" size="30"
+					<td><form:input type="text" name="img" size="30" path="img"
 						placeholder="http://../" /></td>
 				</tr>
 				<tr>
 					<td><strong>Categories :</strong></td>
-					<td><input name="category" list="categories" size="30" >
-						<datalist id="category.id">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</datalist></td>
+					<td>
+					<select width="30" multiple name="categoryIds">
+							<c:forEach var="cat" items="${categories}">
+								<option value="${cat.id }">${cat.name }</option>
+							</c:forEach>
+					</select>
+					<%-- <form:select width="30" multiple="true" path="categories">
+					  <form:options items="${categories}" itemValue="id" itemLabel="name" />
+					</form:select> --%>
+					</td>
+				</tr>
+				<tr>
+					<td><strong>Suppliers :</strong></td>
+					<td><select width="30" multiple name="supplierIds">
+							<c:forEach var="sup" items="${suppliers}">
+								<option value="${sup.id }">${sup.name }</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 			</table>
 			<input type="submit" value="Add Tea" class="btn btn-outline-success" />
-		</form>
+		</form:form>
 		</main>
 
 		<footer class="mastfoot mt-auto">

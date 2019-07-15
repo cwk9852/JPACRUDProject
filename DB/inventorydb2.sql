@@ -227,7 +227,7 @@ START TRANSACTION;
 USE `inventorydb`;
 INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `url`, `logo_img`, `create_date`) VALUES (1, 'Rishi Tea and Botanicals', 'https://www.rishi-tea.com/', 'https://s3.amazonaws.com/cdn.rishi-tea.com/images/RishiLogo.png', '2019-07-11 21:00:00');
 INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `url`, `logo_img`, `create_date`) VALUES (2, 'Mountain Rose Herbs', 'https://www.mountainroseherbs.com/', 'https://blog.mountainroseherbs.com/hubfs/MRHLogo_Color.jpg', '2019-07-11 21:00:00');
-INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `url`, `logo_img`, `create_date`) VALUES (3, 'Cready Tea Farms', 'https://cruddy-tea-farms.net/', 'https://dne/', '2019-07-11 21:00:00');
+INSERT INTO `inventorydb`.`supplier` (`id`, `company_name`, `url`, `logo_img`, `create_date`) VALUES (3, 'Cruddy Tea Farms', 'https://cruddy-tea-farms.net/', 'https://dne/', '2019-07-11 21:00:00');
 
 COMMIT;
 
