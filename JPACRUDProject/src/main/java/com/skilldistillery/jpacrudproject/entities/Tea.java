@@ -1,9 +1,26 @@
 package com.skilldistillery.jpacrudproject.entities;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class Tea {
@@ -18,9 +35,44 @@ public class Tea {
 
 	private double price;
 
+	@Column(name = "kg_on_hand")
 	private int qty;
 
+	@Column(name = "img_url")
 	private String img;
+
+	@Column(name = "update_time")
+	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
+	private Date updateTime;
+	
+	@Column(name = "create_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date createDate;
+
+	@OneToMany(mappedBy="tea")
+	private Set<Review> reviews;
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "tea_has_category", joinColumns = { @JoinColumn(name = "tea_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "category_id") })
+//	private Set<Category> categories;
+	private List<Category> categories;
+
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+	@JoinTable(name = "tea_has_supplier", joinColumns = { @JoinColumn(name = "tea_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "supplier_id") })
+//	private Set<Supplier> suppliers;
+	private List<Supplier> suppliers;
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 	public Tea() {
 
@@ -140,4 +192,100 @@ public class Tea {
 		return true;
 	}
 
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(HashSet<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public List<Supplier> getSuppliers() {
+		return suppliers;
+	}
+
+	public void setSuppliers(List<Supplier> suppliers) {
+		this.suppliers = suppliers;
+	}
+
+	public void addReview(Review review) {
+		if (reviews == null)
+			reviews = new HashSet<>();
+		if (!reviews.contains(review)) {
+			reviews.add(review);
+			review.setTea(this);
+		}
+	}
+
+	public void removeReview(Review review) {
+		if (reviews != null && reviews.contains(review)) {
+			reviews.remove(review);
+			review.setTea(this);
+		}
+	}
+
+	public void addCategory(Category category) {
+		if (categories == null)
+			categories = new ArrayList<>();
+		if (!categories.contains(category)) {
+			categories.add(category);
+			category.addTea(this);
+			;
+		}
+	}
+
+	public void removeCategory(Category category) {
+		if (categories != null && categories.contains(category)) {
+			categories.remove(category);
+			category.removeTea(this);
+		}
+	}
+
+	public void addSupplier(Supplier supplier) {
+		if (suppliers == null)
+			suppliers = new ArrayList<>();
+		if (!suppliers.contains(supplier)) {
+			suppliers.add(supplier);
+			supplier.addTea(this);
+			;
+		}
+	}
+
+	public void removeSupplier(Supplier supplier) {
+		if (suppliers != null && suppliers.contains(supplier)) {
+			suppliers.remove(supplier);
+			supplier.removeTea(this);
+		}
+	}
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Tea [id=").append(id).append(", name=").append(name).append(", description=")
+				.append(description).append(", price=").append(price).append(", qty=").append(qty).append(", img=")
+				.append(img).append(", updateTime=").append(updateTime).append(", createDate=").append(createDate)
+				.append(", reviews=").append(reviews).append(", categories=").append(categories).append(", suppliers=")
+				.append(suppliers).append("]");
+		return builder.toString();
+	}
 }

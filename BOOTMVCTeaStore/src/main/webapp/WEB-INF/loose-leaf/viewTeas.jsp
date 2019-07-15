@@ -45,24 +45,25 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a
-						class="nav-link active" href="browse.do">Inventory</a> <a
-						class="nav-link" href="addProduct.do">Add Tea</a>
+						class="nav-link active" href="viewTeas.do">Loose Leaf</a>
+					<!-- <a
+						class="nav-link" href="viewCategories.do">Categories</a> -->
+					<a class="nav-link" href="addTea.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>
 
-		<main role="main" class="inner cover">
-		<c:choose>
-			<c:when test="${! empty products}">
+		<main role="main" class="inner cover"> <c:choose>
+			<c:when test="${! empty teas}">
 				<table>
 					<tr>
-						<th scope="col">Product ID</th>
+						<th scope="col">Tea ID</th>
 						<th scope="col">Name</th>
 						<th scope="col"></th>
 						<th scope="col">Description</th>
 						<th scope="col">Details</th>
 					</tr>
-					<c:forEach items="${products}" var="p">
+					<c:forEach items="${teas}" var="p">
 						<tr>
 							<td>${p.id}</td>
 							<td>${p.name}</td>
@@ -70,7 +71,7 @@
 								width="100"></td>
 							<td>${p.description }<br></td>
 							<td>
-								<form action=getProduct.do method="GET">
+								<form action="findTea.do" method="GET">
 									<input type="hidden" value="${p.id }" name="id" /> <input
 										type="submit" value="Details" class="btn btn-outline-success" />
 								</form>
@@ -80,19 +81,18 @@
 				</table>
 			</c:when>
 			<c:otherwise>
-				<h2>Product List Not Found</h2>
+				<h2>tea List Not Found</h2>
 			</c:otherwise>
-		</c:choose>
-		</main>
+		</c:choose> </main>
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" class="btn btn-outline-success"/>
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find Tea by ID" /> <input
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
 				</form>
 			</div>
 		</footer>

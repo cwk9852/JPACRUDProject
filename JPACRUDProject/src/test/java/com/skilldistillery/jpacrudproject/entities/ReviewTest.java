@@ -1,7 +1,6 @@
 package com.skilldistillery.jpacrudproject.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TeaTest {
+class ReviewTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 
@@ -38,35 +37,23 @@ class TeaTest {
 	}
 
 	@Test
-	void test_Tea_mappings() {
-		Tea tea = em.find(Tea.class, 1);
-		assertEquals(1, tea.getId());
-		assertEquals("Classic Chai", tea.getName());
-		assertNotNull(tea.getDescription());
-		assertEquals(1.99, tea.getPrice());
-		assertEquals(14, tea.getQty());
-		assertNotNull(tea.getImg());
+	void test_Review_mapping() {
+		Review review = em.find(Review.class, 1);
+		assertEquals("This was cruddy tea", review.getReview());
+		assertEquals(1, review.getTea().getId());
+		assertEquals("A Review", review.getTitle());
+		assertEquals(1, review.getRating());
 	}
-
 	@Test
-	void test_Tea_has_Categories() {
-		Tea tea = em.find(Tea.class, 1);
-		assertEquals(3, tea.getCategories().size());
-
+	void test_Review_has_User() {
+		Review review = em.find(Review.class, 1);
+		assertEquals(1, review.getUser().getId());
 	}
-
 	@Test
-	void test_Tea_has_Suppliers() {
-		Tea tea = em.find(Tea.class, 1);
-		assertEquals(1, tea.getSuppliers().size());
-
+	void test_Review_has_Tea() {
+		Review review = em.find(Review.class, 1);
+		assertEquals(1, review.getTea().getId());
+		assertEquals("A Review", review.getTitle());
 	}
-
-	@Test
-	void test_Tea_has_Reviews() {
-		Tea tea = em.find(Tea.class, 1);
-		assertEquals(2, tea.getReviews().size());
-
-	}
-
+	
 }

@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 -- MySQL Workbench Forward Engineering
->>>>>>> 171f517b0040aa9dbd88f4cb200853c09b2fd75e
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -140,22 +137,10 @@ CREATE INDEX `fk_tea_has_supplier_supplier1_idx` ON `inventorydb`.`tea_has_suppl
 CREATE INDEX `fk_tea_has_supplier_tea1_idx` ON `inventorydb`.`tea_has_supplier` (`tea_id` ASC);
 
 
-<<<<<<< HEAD
-CREATE TABLE `product` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`name` varchar(100) NOT NULL,
-`description` varchar(450) DEFAULT NULL,
-`price` decimal(6,2) NOT NULL,
-`qty` int(11) NOT NULL,
-`img` varchar(4500) DEFAULT NULL,
-PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-=======
 -- -----------------------------------------------------
 -- Table `inventorydb`.`tea_has_category`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `inventorydb`.`tea_has_category` ;
->>>>>>> 171f517b0040aa9dbd88f4cb200853c09b2fd75e
 
 CREATE TABLE IF NOT EXISTS `inventorydb`.`tea_has_category` (
   `tea_id` INT NOT NULL,
