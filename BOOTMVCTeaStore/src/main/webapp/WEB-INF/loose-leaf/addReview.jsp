@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -46,8 +46,7 @@
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link" href="home.do">Home</a> <a class="nav-link "
 						href="viewTeas.do">Loose Leaf</a>
-					<!-- <a class="nav-link"
-						href="viewCategories.do">Categories</a><a class="nav-link"
+					<!-- <a class="nav-link"h
 						href="addTea.do">Add Tea</a> -->
 					<a class="nav-link active" href="addReview.do">Add Review ${tea.name }</a>
 				</nav>
