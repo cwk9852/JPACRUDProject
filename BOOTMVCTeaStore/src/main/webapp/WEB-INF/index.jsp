@@ -45,38 +45,40 @@
 				<h3 class="masthead-brand">Cruddy Tea</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="home.do">Home</a> <a
-						class="nav-link" href="browse.do">Inventory</a> <a
-						class="nav-link" href="addProduct.do">Add Tea</a>
+						class="nav-link" href="viewTeas.do">Loose Leaf</a>
+					<!-- <a class="nav-link"
+						href="viewCategories.do">Categories</a> -->
+					<a class="nav-link"
+						href="addTea.do">Add Tea</a>
 				</nav>
 			</div>
 		</header>
-
 		<main role="main" class="inner cover">
 		<h3 class="cover-heading">
 			<em>Tea Spotlight</em>
 		</h3>
 		<p class="lead">
-			<img alt="${products.get(0).img}" src="${products.get(0).img}"
-				height="250" width="250">
+			<img alt="${teas.get(0).img}" src="${teas.get(0).img}" height="250"
+				width="250">
 		</p>
-		<p class="lead">${products.get(0).name}</p>
-		<p class="lead">${products.get(0).description}</p>
+		<p class="lead">${teas.get(0).name}</p>
+		<p class="lead">${teas.get(0).description}</p>
 		<p class="lead">
-			<a href="getProduct.do?id=${products.get(0).id}"
-				class="btn btn-outline btn-secondary">Learn more</a>
+			<a href="findTea.do?id=${teas.get(0).id}"
+				class="btn btn-outline btn-secondary">Learn More</a>
 		</p>
 		</main>
 
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
+				<form class="nav-link" action="findTea.do" method="GET">
+					<input type="text" name="id" placeholder="Find by Tea ID" /> <input
+						type="submit" value="Find Tea" class="btn btn-outline-success" />
+				</form>
 				<p>
 					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
 					by <a href="https://twitter.com/mdo">@mdo</a>.
 				</p>
-				<form class="nav-link" action="getProduct.do" method="GET">
-					<input type="text" name="id" placeholder="Search by Tea ID" /> <input
-						type="submit" value="Find Tea" class="btn btn-outline-success" />
-				</form>
 			</div>
 		</footer>
 	</div>

@@ -1,6 +1,7 @@
 package com.skilldistillery.jpacrudproject.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ProductTest {
+class CategoryTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
 
@@ -37,19 +38,16 @@ class ProductTest {
 	}
 
 	@Test
-	void test_Product_mappings() {
-		Product product = em.find(Product.class, 1);
-		assertEquals("Classic Chai", product.getName());
-		assertEquals(9.99, product.getPrice());
-		assertEquals(15, product.getQty());
+	void test_Category_mapping() {
+		Category cat = em.find(Category.class, 1);
+		assertEquals(1, cat.getId());
+		assertEquals("Green", cat.getName());
+		assertNotNull(cat.getDescription());
 	}
 	
 	@Test
-	void test_Update_product() {
-		Product product = em.find(Product.class, 1);
-		assertEquals("Classic Chai", product.getName());
-		assertEquals(9.99, product.getPrice());
-		assertEquals(15, product.getQty());
+	void test_Category_has_Teas() {
+		Category cat = em.find(Category.class, 1);
+		assertEquals(2, cat.getTeas().size());
 	}
-	
 }
