@@ -1,7 +1,7 @@
 ## Spring Boot MVC Entity Project
 
 ### Week 9 Homework for Skill Distillery
-Spring MVC Film CRUD
+Spring MVC Tea Store with complete CRUD
 
 ### Overview
 Web Application using JPA and Spring Boot to perform CRUD Operations using mySql/SQL.
